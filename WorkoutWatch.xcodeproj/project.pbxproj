@@ -24,6 +24,7 @@
 		1E1103E31CCBD96400E348E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1103E21CCBD96400E348E5 /* Assets.xcassets */; };
 		1E1103FA1CCBE38400E348E5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1103F91CCBE38400E348E5 /* HealthKit.framework */; };
 		1E1103FD1CCBE7DB00E348E5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1103FC1CCBE7DB00E348E5 /* HealthKit.framework */; };
+		1E6E8BD01CCC695600646C16 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6E8BCF1CCC695600646C16 /* WorkoutManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		1E1103F91CCBE38400E348E5 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		1E1103FB1CCBE7DB00E348E5 /* WorkoutWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "WorkoutWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		1E1103FC1CCBE7DB00E348E5 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		1E6E8BCF1CCC695600646C16 /* WorkoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 				1E1103E21CCBD96400E348E5 /* Assets.xcassets */,
 				1E1103E41CCBD96400E348E5 /* Info.plist */,
 				1E1103DA1CCBD96400E348E5 /* Supporting Files */,
+				1E6E8BCF1CCC695600646C16 /* WorkoutManager.swift */,
 			);
 			path = "WorkoutWatch WatchKit Extension";
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E1103E11CCBD96400E348E5 /* NotificationController.swift in Sources */,
+				1E6E8BD01CCC695600646C16 /* WorkoutManager.swift in Sources */,
 				1E1103DF1CCBD96400E348E5 /* ExtensionDelegate.swift in Sources */,
 				1E1103DD1CCBD96400E348E5 /* InterfaceController.swift in Sources */,
 			);
@@ -764,6 +768,7 @@
 				1E1103E91CCBD96400E348E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E1103EB1CCBD96400E348E5 /* Build configuration list for PBXNativeTarget "WorkoutWatch WatchKit App" */ = {
 			isa = XCConfigurationList;
@@ -772,6 +777,7 @@
 				1E1103ED1CCBD96400E348E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E1103EF1CCBD96400E348E5 /* Build configuration list for PBXNativeTarget "WorkoutWatch" */ = {
 			isa = XCConfigurationList;
@@ -780,6 +786,7 @@
 				1E1103F11CCBD96400E348E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E1103F21CCBD96400E348E5 /* Build configuration list for PBXNativeTarget "WorkoutWatchTests" */ = {
 			isa = XCConfigurationList;
@@ -788,6 +795,7 @@
 				1E1103F41CCBD96400E348E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E1103F51CCBD96400E348E5 /* Build configuration list for PBXNativeTarget "WorkoutWatchUITests" */ = {
 			isa = XCConfigurationList;
@@ -796,6 +804,7 @@
 				1E1103F71CCBD96400E348E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
