@@ -19,6 +19,7 @@
                                     <fontDescription key="font" type="boldSystem" pointSize="31"/>
                                 </timer>
                                 <button width="1" alignment="center" verticalAlignment="bottom" title="Start Workout" id="9G7-TV-7N9">
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="startStopButtonPressed" destination="AgC-eL-Hgc" id="mh0-ZI-UM5"/>
                                     </connections>
