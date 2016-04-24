@@ -23,9 +23,9 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
     static let sharedInstance = WorkoutManager()
     weak var delegate: WorkoutManagerDelegate?
     
-    static let maxHeartRate = 187.0
+    private static let maxHeartRate = 187.0
     
-    struct WorkoutStep {
+    private struct WorkoutStep {
         init(durationMinutes: Double, minBPM: Double, maxBPM: Double) {
             self.durationMinutes = durationMinutes
             self.minBPM = minBPM
@@ -36,28 +36,29 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
         var maxBPM = 0.0
     }
     
-    let healthStore = HKHealthStore()
-    var workoutSession: HKWorkoutSession?
-    let heartRateQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-    let activeEnergyBurnedQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)
-    let workoutObjectType = HKObjectType.workoutType()
-    var currentHeartRateStreamingQuery: HKQuery?
-    var currentActiveEnergyStreamingQuery: HKQuery?
-    var heartRateAnchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
-    var activeEnergyAnchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
-    let heartRateUnit = HKUnit(fromString: "count/min")
-    var activeEnergyUnit = HKUnit.kilocalorieUnit()
-    var currentActiveEnergyQuantity = HKQuantity(unit: HKUnit.kilocalorieUnit(), doubleValue: 0.0)
-    var activeEnergySamples = [HKQuantitySample]()
+    private let healthStore = HKHealthStore()
+    private var workoutSession: HKWorkoutSession?
+    private let heartRateQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+    private let activeEnergyBurnedQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)
+    private let workoutObjectType = HKObjectType.workoutType()
+    private var currentHeartRateStreamingQuery: HKQuery?
+    private var currentActiveEnergyStreamingQuery: HKQuery?
+    private var heartRateAnchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
+    private var activeEnergyAnchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
+    private let heartRateUnit = HKUnit(fromString: "count/min")
+    private var activeEnergyUnit = HKUnit.kilocalorieUnit()
+    private var currentActiveEnergyQuantity = HKQuantity(unit: HKUnit.kilocalorieUnit(), doubleValue: 0.0)
+    private var activeEnergySamples = [HKQuantitySample]()
     
-    static let workoutSteps = [WorkoutStep(durationMinutes: 20, minBPM: maxHeartRate*0.65, maxBPM: maxHeartRate*0.75)]
-    var currentWorkoutStep: WorkoutStep = workoutSteps[0]
+    private static let workoutSteps = [WorkoutStep(durationMinutes: 20, minBPM: maxHeartRate*0.65, maxBPM: maxHeartRate*0.75)]
+    private var currentWorkoutStep: WorkoutStep = workoutSteps[0]
+    
+    private var workoutTimer : NSTimer?
     
     var isWorkoutInProgress = false
-    var workoutTimer : NSTimer?
     var workoutEndDate: NSDate?
     
-    override init() {
+    private override init() {
         
         guard HKHealthStore.isHealthDataAvailable() == true else {
             // not available
@@ -99,7 +100,7 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
         }
     }
     
-    func workoutTimerExpired() {
+    @objc private func workoutTimerExpired() {
         
         //TODO: open parent application and get it to send a local notification immediately saying that the workout timer has expired
         //http://stackoverflow.com/questions/30102806/trigger-uilocalnotification-from-watchkit
@@ -122,7 +123,7 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
         NSLog("Workout error: \(error.userInfo)")
     }
     
-    func hkWorkoutSessionStarted() {
+    private func hkWorkoutSessionStarted() {
 
         if let currentHeartRateStreamingQuery = createHeartRateStreamingQuery()
         {
@@ -140,7 +141,7 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
         }
     }
     
-    func hkWorkoutSessionEnded() {
+    private func hkWorkoutSessionEnded() {
         
         if let query = createHeartRateStreamingQuery()
         {
@@ -160,7 +161,7 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
         }
     }
     
-    func createHeartRateStreamingQuery() -> HKQuery? {
+    private func createHeartRateStreamingQuery() -> HKQuery? {
         
         guard let quantityType = heartRateQuantityType else { return nil }
         
@@ -188,7 +189,7 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
         return heartRateQuery
     }
     
-    func createActiveEnergyStreamingQuery() -> HKQuery? {
+    private func createActiveEnergyStreamingQuery() -> HKQuery? {
         guard let activeEnergyType = activeEnergyBurnedQuantityType else { return nil }
         
         let activeEnergyQuery = HKAnchoredObjectQuery(type: activeEnergyType, predicate: nil, anchor: activeEnergyAnchor, limit: Int(HKObjectQueryNoLimit)) { query, samples, deletedObjects, anchor, error in
@@ -219,7 +220,7 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
         return activeEnergyQuery
     }
     
-    func updateHeartRate(samples: [HKSample]?) {
+    private func updateHeartRate(samples: [HKSample]?) {
         
         guard let heartRateSamples = samples as? [HKQuantitySample] else {return}
         guard let sample = heartRateSamples.first else {return}
@@ -244,7 +245,7 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
         }
     }
     
-    func updateActiveEnergyBurned(samples: [HKSample]?) {
+    private func updateActiveEnergyBurned(samples: [HKSample]?) {
         
         guard let samples = samples as? [HKQuantitySample] else {return}
         
@@ -264,7 +265,7 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
         self.activeEnergySamples += processedResults.1
     }
     
-    func saveWorkout() {
+    private func saveWorkout() {
         
         guard let beginDate = workoutSession?.startDate, endDate = workoutSession?.endDate else { return }
         guard healthStore.authorizationStatusForType(activeEnergyBurnedQuantityType!) == .SharingAuthorized && healthStore.authorizationStatusForType(workoutObjectType) == .SharingAuthorized else { return }
