@@ -7,29 +7,17 @@
 //
 
 import UIKit
+import HeartBeatKit
 
 class OnboardingHealthKitPermissionsViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func allowHealthKitAccessButtonTapped(sender: UIButton) {
+        
+        HealthKitManager.sharedInstance.requestHealthKitPermissionsWithCompletion { (success, error) in
+            // TODO: handle failure
+            // assume success
+            // TODO: push age screen
+        }
     }
-    */
 
 }

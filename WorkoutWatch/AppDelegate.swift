@@ -25,9 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showOnboardingIfNecessary() {
+        
         if (!Defaults[.hasCompletedOnboarding]) {
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let onboardingNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("OnboardingNavigationViewController") as! UINavigationController
+            let onboardingNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("OnboardingNavigationViewController")
             self.window!.rootViewController = onboardingNavigationViewController
         }
     }

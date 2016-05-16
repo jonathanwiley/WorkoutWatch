@@ -36,6 +36,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhv-Mg-0q9">
                                 <rect key="frame" x="222" y="285" width="157" height="30"/>
                                 <state key="normal" title="Allow HealthKit Access"/>
+                                <connections>
+                                    <action selector="allowHealthKitAccessButtonTapped:" destination="uPd-Zc-kr6" eventType="touchUpInside" id="1B0-dm-1ha"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
