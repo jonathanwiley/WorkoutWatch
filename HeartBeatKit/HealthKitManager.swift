@@ -14,6 +14,7 @@ public class HealthKitManager: NSObject {
     
     let healthStore = HKHealthStore()
     
+    private let ageCharacteristicType = HKObjectType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierDateOfBirth)!
     private let heartRateQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!
     private let activeEnergyBurnedQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)!
     private let workoutObjectType = HKObjectType.workoutType()
@@ -24,7 +25,7 @@ public class HealthKitManager: NSObject {
     
     public func requestHealthKitPermissionsWithCompletion(completion: (Bool, NSError?) -> Void) {
         
-        let readTypes = Set([heartRateQuantityType, activeEnergyBurnedQuantityType])
+        let readTypes = Set([ageCharacteristicType, heartRateQuantityType, activeEnergyBurnedQuantityType])
         
         let shareTypes = Set([workoutObjectType, activeEnergyBurnedQuantityType])
         
@@ -34,6 +35,26 @@ public class HealthKitManager: NSObject {
             }
             completion(success, error)
         }
+    }
+    
+    public func age() -> Int? {
+        
+        do {
+            let birthDay = try healthStore.dateOfBirth()
+            let today = NSDate()
+            let differenceComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.Year, fromDate: birthDay, toDate: today, options: NSCalendarOptions.init(rawValue: 0))
+            let age = differenceComponents.year
+            return age
+        } catch {
+            
+        }
+        
+        
+//        }
+//        if error != nil {
+//            println("Error reading Birthday: \(error)")
+//        }
+        return nil
     }
     
 }

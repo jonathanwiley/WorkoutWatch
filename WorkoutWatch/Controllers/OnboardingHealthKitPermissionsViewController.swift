@@ -17,6 +17,9 @@ class OnboardingHealthKitPermissionsViewController: UIViewController {
             // TODO: handle failure
             // assume success
             // TODO: push age screen
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.performSegueWithIdentifier("OnboardingAgeViewControllerSegue", sender: nil)
+            })
         }
     }
 

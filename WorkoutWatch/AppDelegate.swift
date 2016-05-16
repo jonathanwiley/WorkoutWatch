@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let onboardingNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("OnboardingNavigationViewController")
-            self.window!.rootViewController = onboardingNavigationViewController
+            self.window?.makeKeyAndVisible()
+            self.window?.rootViewController?.presentViewController(onboardingNavigationViewController, animated: false, completion: nil)
         }
     }
 

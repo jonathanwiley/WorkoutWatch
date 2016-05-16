@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5T-k1-OfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-603" y="-358"/>
+            <point key="canvasLocation" x="-1331" y="-358"/>
         </scene>
         <!--Onboarding Health Kit Permissions View Controller-->
         <scene sceneID="j35-JV-JI8">
@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhv-Mg-0q9">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhv-Mg-0q9">
                                 <rect key="frame" x="222" y="285" width="157" height="30"/>
                                 <state key="normal" title="Allow HealthKit Access"/>
                                 <connections>
@@ -42,17 +42,66 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uhv-Mg-0q9" firstAttribute="centerY" secondItem="3is-bG-Mnv" secondAttribute="centerY" id="MH3-VI-HOw"/>
+                            <constraint firstItem="uhv-Mg-0q9" firstAttribute="centerX" secondItem="3is-bG-Mnv" secondAttribute="centerX" id="TdP-z1-4kb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cBF-5R-Nkh"/>
+                    <connections>
+                        <segue destination="2Rb-g1-Nha" kind="showDetail" identifier="OnboardingAgeViewControllerSegue" action="showViewController:sender:" id="Vag-ZK-GCJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwF-af-x4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-628" y="-358"/>
+        </scene>
+        <!--Onboarding Age View Controller-->
+        <scene sceneID="Zx4-hh-BVj">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingAgeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Rb-g1-Nha" customClass="OnboardingAgeViewController" customModule="WorkoutWatch" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ejA-7e-5yo"/>
+                        <viewControllerLayoutGuide type="bottom" id="xSL-zM-q5m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mxw-0D-tBZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4V-sL-ecM">
+                                <rect key="frame" x="271" y="267" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8E4-KO-y9i">
+                                <rect key="frame" x="269" y="341" width="62" height="30"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="continueButtonTapped:" destination="2Rb-g1-Nha" eventType="touchUpInside" id="U6A-Nv-Dh9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="a4V-sL-ecM" firstAttribute="centerX" secondItem="mxw-0D-tBZ" secondAttribute="centerX" id="aH4-Um-b4s"/>
+                            <constraint firstItem="a4V-sL-ecM" firstAttribute="centerY" secondItem="mxw-0D-tBZ" secondAttribute="centerY" id="iPj-Mq-ll5"/>
+                            <constraint firstItem="8E4-KO-y9i" firstAttribute="top" secondItem="a4V-sL-ecM" secondAttribute="bottom" constant="8" id="taK-yd-xfH"/>
+                            <constraint firstItem="8E4-KO-y9i" firstAttribute="centerX" secondItem="mxw-0D-tBZ" secondAttribute="centerX" id="ygZ-AI-c0f"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ageLabel" destination="a4V-sL-ecM" id="gsb-ID-68a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K8a-bk-unh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="100" y="-358"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mLo-HF-MLv">
             <objects>
-                <navigationController id="GK3-AV-lB5" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" id="GK3-AV-lB5" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gba-oT-sJY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

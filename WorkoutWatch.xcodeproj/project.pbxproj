@@ -34,6 +34,7 @@
 		1E7D566E1CE98C9900E5C3D8 /* HeartBeatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7D56591CE98C9800E5C3D8 /* HeartBeatKit.framework */; };
 		1E7D566F1CE98C9900E5C3D8 /* HeartBeatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7D56591CE98C9800E5C3D8 /* HeartBeatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1E7D56781CE98CB700E5C3D8 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7D56771CE98CB700E5C3D8 /* HealthKitManager.swift */; };
+		1E7D567A1CE9909100E5C3D8 /* OnboardingAgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7D56791CE9909100E5C3D8 /* OnboardingAgeViewController.swift */; };
 		2A8672B006EBD9AA23ED9012 /* Pods_WorkoutWatch_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 672730A65F068DAF3899B49B /* Pods_WorkoutWatch_WatchKit_App.framework */; };
 		568022583F1A95AB5B40BED3 /* Pods_WorkoutWatchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44427555F05C96510666588 /* Pods_WorkoutWatchTests.framework */; };
 		9ABB88C297636FD31F0559F0 /* Pods_WorkoutWatch_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722E4111ECCB85FE6A5C9489 /* Pods_WorkoutWatch_WatchKit_Extension.framework */; };
@@ -169,6 +170,7 @@
 		1E7D56691CE98C9900E5C3D8 /* HeartBeatKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBeatKitTests.swift; sourceTree = "<group>"; };
 		1E7D566B1CE98C9900E5C3D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E7D56771CE98CB700E5C3D8 /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		1E7D56791CE9909100E5C3D8 /* OnboardingAgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAgeViewController.swift; sourceTree = "<group>"; };
 		251F5316448304AB92FB2169 /* Pods-WorkoutWatchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutWatchTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutWatchTests/Pods-WorkoutWatchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		672730A65F068DAF3899B49B /* Pods_WorkoutWatch_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutWatch_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C7BE32F6B536C6626EDFD7C /* Pods-WorkoutWatchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutWatchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutWatchTests/Pods-WorkoutWatchTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				1E7D55F71CE9741D00E5C3D8 /* OnboardingHealthKitPermissionsViewController.swift */,
+				1E7D56791CE9909100E5C3D8 /* OnboardingAgeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -894,6 +897,7 @@
 			files = (
 				1E1103A41CCBD96400E348E5 /* ViewController.swift in Sources */,
 				1E7D55F81CE9741D00E5C3D8 /* OnboardingHealthKitPermissionsViewController.swift in Sources */,
+				1E7D567A1CE9909100E5C3D8 /* OnboardingAgeViewController.swift in Sources */,
 				1E1103A21CCBD96400E348E5 /* AppDelegate.swift in Sources */,
 				1E7D55FB1CE979BC00E5C3D8 /* DefaultsKeysExtension.swift in Sources */,
 			);
