@@ -6,6 +6,47 @@
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
+        <scene sceneID="68T-cH-7xa">
+            <objects>
+                <navigationController storyboardIdentifier="OnboardingNavigationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lG0-z4-goC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qXC-JF-bem">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uPd-Zc-kr6" kind="relationship" relationship="rootViewController" id="cKX-jq-hoc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o5T-k1-OfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-603" y="-358"/>
+        </scene>
+        <!--Onboarding Health Kit Permissions View Controller-->
+        <scene sceneID="j35-JV-JI8">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingHealthKitPermissionsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uPd-Zc-kr6" customClass="OnboardingHealthKitPermissionsViewController" customModule="WorkoutWatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2xb-Ux-4Vl"/>
+                        <viewControllerLayoutGuide type="bottom" id="X1C-Hn-mZF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3is-bG-Mnv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhv-Mg-0q9">
+                                <rect key="frame" x="222" y="285" width="157" height="30"/>
+                                <state key="normal" title="Allow HealthKit Access"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cBF-5R-Nkh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lwF-af-x4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100" y="-358"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="mLo-HF-MLv">
             <objects>
                 <navigationController id="GK3-AV-lB5" sceneMemberID="viewController">
@@ -118,7 +159,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5KS-3E-2J6" id="aRU-To-ddm">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout Details Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPk-pv-zZt">
@@ -240,6 +281,10 @@
         <scene sceneID="zqn-2M-Dza">
             <objects>
                 <viewController id="9J2-Ti-tJW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="og8-Mz-be5"/>
+                        <viewControllerLayoutGuide type="bottom" id="pof-jx-eUS"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8NI-bk-OLR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="296"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,7 +297,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x3U-BU-JXG" id="aWi-Sh-ZsM">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Previous Run Details Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRh-KA-qkO">
@@ -273,6 +318,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X9f-yG-Dsz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="840" y="962"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="kVO-bE-ZW2">
+            <objects>
+                <viewController id="wZE-AB-W51" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rMT-pi-wEN"/>
+                        <viewControllerLayoutGuide type="bottom" id="uVZ-YB-Vvq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k5M-rn-aPJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gzS-EQ-1Br" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
 </document>

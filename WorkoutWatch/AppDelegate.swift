@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import SwiftyUserDefaults
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        showOnboardingIfNecessary()
+        
         return true
+    }
+    
+    func showOnboardingIfNecessary() {
+        if (!Defaults[.hasCompletedOnboarding]) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let onboardingNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("OnboardingNavigationViewController") as! UINavigationController
+            self.window!.rootViewController = onboardingNavigationViewController
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
