@@ -46,14 +46,9 @@ public class HealthKitManager: NSObject {
             let age = differenceComponents.year
             return age
         } catch {
-            
+            // TODO: handle error
         }
         
-        
-//        }
-//        if error != nil {
-//            println("Error reading Birthday: \(error)")
-//        }
         return nil
     }
     

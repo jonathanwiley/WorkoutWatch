@@ -8,6 +8,7 @@
 
 import UIKit
 import HeartBeatKit
+import SwiftyUserDefaults
 
 class OnboardingAgeViewController: UIViewController {
 
@@ -23,6 +24,9 @@ class OnboardingAgeViewController: UIViewController {
     }
     
     @IBAction func continueButtonTapped(sender: UIButton) {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        
+        presentingViewController?.dismissViewControllerAnimated(true, completion: { 
+            Defaults[.hasCompletedOnboarding] = true
+        })
     }
 }
