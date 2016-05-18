@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>30 Minute Medium</string>
+	<key>WorkoutSteps</key>
+	<array>
+		<dict>
+			<key>Minutes</key>
+			<integer>30</integer>
+			<key>Max Heart Rate Percentage</key>
+			<integer>65</integer>
+			<key>Min Heart Rate Percentage</key>
+			<integer>75</integer>
+		</dict>
+	</array>
+</dict>
+</plist>
