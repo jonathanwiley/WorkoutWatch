@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -207,40 +208,54 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5KS-3E-2J6">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WorkoutTemplateTableViewCell" id="5KS-3E-2J6" customClass="WorkoutTemplateTableViewCell" customModule="WorkoutWatch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5KS-3E-2J6" id="aRU-To-ddm">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout Details Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPk-pv-zZt">
-                                                    <rect key="frame" x="8" y="11" width="163" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Workout Details Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPk-pv-zZt">
+                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DPk-pv-zZt" firstAttribute="leading" secondItem="aRU-To-ddm" secondAttribute="leadingMargin" id="3zV-Ba-cfb"/>
+                                                <constraint firstItem="DPk-pv-zZt" firstAttribute="top" secondItem="aRU-To-ddm" secondAttribute="topMargin" constant="3" id="Jc3-E6-185"/>
+                                                <constraint firstItem="DPk-pv-zZt" firstAttribute="trailing" secondItem="aRU-To-ddm" secondAttribute="trailingMargin" id="WkI-Hf-OWd"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="DPk-pv-zZt" secondAttribute="bottom" constant="3" id="h5A-CK-AZA"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="cjb-zQ-YdZ" kind="showDetail" id="APT-hK-FjP"/>
+                                            <outlet property="nameLabel" destination="DPk-pv-zZt" id="rZp-gY-hPp"/>
+                                            <segue destination="cjb-zQ-YdZ" kind="show" identifier="StartActiveWorkoutSegue" id="APT-hK-FjP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Q9X-R1-rKO" id="KPS-js-wzY"/>
+                                    <outlet property="delegate" destination="Q9X-R1-rKO" id="8VT-Dc-5vk"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Sya-GY-ZBQ"/>
+                    <connections>
+                        <outlet property="tableView" destination="qBl-rb-jYc" id="s9x-Hx-gSN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Peg-EQ-TlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2340" y="353"/>
         </scene>
-        <!--View Controller-->
+        <!--Active Workout View Controller-->
         <scene sceneID="xG8-UP-ZRb">
             <objects>
-                <viewController id="cjb-zQ-YdZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ActiveWorkoutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cjb-zQ-YdZ" customClass="ActiveWorkoutViewController" customModule="WorkoutWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2fw-7u-XwU"/>
                         <viewControllerLayoutGuide type="bottom" id="mE3-QQ-Ymm"/>
@@ -252,41 +267,15 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlE-RT-A4F">
                                 <rect key="frame" x="252" y="285" width="96" height="30"/>
                                 <state key="normal" title="Start Workout"/>
-                                <connections>
-                                    <segue destination="Ksc-bR-RwH" kind="showDetail" id="YCP-U5-156"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZXO-wT-hkQ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vh-wr-pVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3049" y="353"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Kry-N9-Enb">
-            <objects>
-                <viewController id="Ksc-bR-RwH" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wlf-ut-NN5"/>
-                        <viewControllerLayoutGuide type="bottom" id="jeS-Pf-dAo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qMK-jN-ae4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYB-PW-VBm">
-                                <rect key="frame" x="249" y="285" width="102" height="30"/>
-                                <state key="normal" title="Finish Workout"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n6n-HQ-QvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3772" y="353"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5I1-RQ-gd8">

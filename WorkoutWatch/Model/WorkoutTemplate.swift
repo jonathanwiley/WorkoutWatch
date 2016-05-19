@@ -13,8 +13,23 @@ class WorkoutTemplate: NSObject {
     let name : String
     let workoutSteps: [WorkoutStep]
     
+    
     init(name: String, workoutSteps: [WorkoutStep]) {
+        
         self.name = name
         self.workoutSteps = workoutSteps
+    }
+    
+    
+    func duration() -> Int {
+        
+        var durationAccumulator = 0
+        
+        for workoutStep in workoutSteps {
+            
+            durationAccumulator += workoutStep.minutes
+        }
+        
+        return durationAccumulator
     }
 }

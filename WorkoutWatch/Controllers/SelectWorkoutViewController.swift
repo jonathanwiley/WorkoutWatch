@@ -8,8 +8,10 @@
 
 import UIKit
 
-class SelectWorkoutViewController: UIViewController {
+class SelectWorkoutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     var workoutTemplates = [WorkoutTemplate]()
     
     override func viewDidLoad() {
@@ -19,5 +21,29 @@ class SelectWorkoutViewController: UIViewController {
         workoutTemplates = WorkoutTemplateService.fetchWorkoutTemplatesFromDisk()
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return workoutTemplates.count
+    }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let workoutTemplateCell = tableView.dequeueReusableCellWithIdentifier("WorkoutTemplateTableViewCell", forIndexPath: indexPath) as! WorkoutTemplateTableViewCell
+        
+        workoutTemplateCell.nameLabel.text = workoutTemplates[indexPath.row].name
+        
+        return workoutTemplateCell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "StartActiveWorkoutSegue" {
+            
+            let activeWorkoutViewController = segue.destinationViewController as! ActiveWorkoutViewController
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+             
+                activeWorkoutViewController.workoutTemplate = workoutTemplates[selectedIndexPath.row]
+            }
+        }
+    }
 }
