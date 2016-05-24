@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import HeartBeatKit
 
 class OnboardingHealthKitPermissionsViewController: UIViewController {
     

@@ -24,23 +24,25 @@
 		1E1103E31CCBD96400E348E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1103E21CCBD96400E348E5 /* Assets.xcassets */; };
 		1E1103FA1CCBE38400E348E5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1103F91CCBE38400E348E5 /* HealthKit.framework */; };
 		1E1103FD1CCBE7DB00E348E5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1103FC1CCBE7DB00E348E5 /* HealthKit.framework */; };
+		1E2447E11CF2606600C3B0EF /* WorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2447E01CF2606600C3B0EF /* WorkoutController.swift */; };
+		1E24483F1CF2AD3B00C3B0EF /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2448391CF2AD3B00C3B0EF /* HealthKitManager.swift */; };
+		1E2448401CF2AD3B00C3B0EF /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2448391CF2AD3B00C3B0EF /* HealthKitManager.swift */; };
+		1E2448411CF2AD3B00C3B0EF /* WorkoutStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E24483B1CF2AD3B00C3B0EF /* WorkoutStep.swift */; };
+		1E2448421CF2AD3B00C3B0EF /* WorkoutStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E24483B1CF2AD3B00C3B0EF /* WorkoutStep.swift */; };
+		1E2448431CF2AD3B00C3B0EF /* WorkoutTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E24483C1CF2AD3B00C3B0EF /* WorkoutTemplate.swift */; };
+		1E2448441CF2AD3B00C3B0EF /* WorkoutTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E24483C1CF2AD3B00C3B0EF /* WorkoutTemplate.swift */; };
+		1E2448451CF2AD3B00C3B0EF /* WorkoutTemplateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E24483E1CF2AD3B00C3B0EF /* WorkoutTemplateService.swift */; };
+		1E2448461CF2AD3B00C3B0EF /* WorkoutTemplateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E24483E1CF2AD3B00C3B0EF /* WorkoutTemplateService.swift */; };
+		1E2448481CF2AD4300C3B0EF /* WorkoutTemplates in Resources */ = {isa = PBXBuildFile; fileRef = 1E2448471CF2AD4300C3B0EF /* WorkoutTemplates */; };
+		1E2448491CF2AD4300C3B0EF /* WorkoutTemplates in Resources */ = {isa = PBXBuildFile; fileRef = 1E2448471CF2AD4300C3B0EF /* WorkoutTemplates */; };
+		1E24484B1CF2C86100C3B0EF /* WorkoutSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E24484A1CF2C86100C3B0EF /* WorkoutSessionManager.swift */; };
 		1E6E8BD01CCC695600646C16 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6E8BCF1CCC695600646C16 /* WorkoutManager.swift */; };
 		1E7D55F81CE9741D00E5C3D8 /* OnboardingHealthKitPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7D55F71CE9741D00E5C3D8 /* OnboardingHealthKitPermissionsViewController.swift */; };
 		1E7D55FB1CE979BC00E5C3D8 /* DefaultsKeysExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7D55FA1CE979BC00E5C3D8 /* DefaultsKeysExtension.swift */; };
-		1E7D565C1CE98C9900E5C3D8 /* HeartBeatKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E7D565B1CE98C9900E5C3D8 /* HeartBeatKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1E7D56631CE98C9900E5C3D8 /* HeartBeatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7D56591CE98C9800E5C3D8 /* HeartBeatKit.framework */; };
-		1E7D566A1CE98C9900E5C3D8 /* HeartBeatKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7D56691CE98C9900E5C3D8 /* HeartBeatKitTests.swift */; };
-		1E7D566E1CE98C9900E5C3D8 /* HeartBeatKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7D56591CE98C9800E5C3D8 /* HeartBeatKit.framework */; };
-		1E7D566F1CE98C9900E5C3D8 /* HeartBeatKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E7D56591CE98C9800E5C3D8 /* HeartBeatKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1E7D56781CE98CB700E5C3D8 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7D56771CE98CB700E5C3D8 /* HealthKitManager.swift */; };
 		1E7D567A1CE9909100E5C3D8 /* OnboardingAgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7D56791CE9909100E5C3D8 /* OnboardingAgeViewController.swift */; };
 		1EFACC571CEC1D00000D725F /* WorkoutTemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFACC561CEC1D00000D725F /* WorkoutTemplateTableViewCell.swift */; };
 		1EFACC591CEC2128000D725F /* ActiveWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFACC581CEC2128000D725F /* ActiveWorkoutViewController.swift */; };
 		1EFF568A1CEBE9B40066ED85 /* SelectWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFF56891CEBE9B40066ED85 /* SelectWorkoutViewController.swift */; };
-		1EFF568D1CEBEA180066ED85 /* WorkoutTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFF568C1CEBEA180066ED85 /* WorkoutTemplate.swift */; };
-		1EFF56901CEBEEAE0066ED85 /* WorkoutTemplateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFF568F1CEBEEAE0066ED85 /* WorkoutTemplateService.swift */; };
-		1EFF569A1CEBF76C0066ED85 /* WorkoutStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFF56991CEBF76C0066ED85 /* WorkoutStep.swift */; };
-		1EFF569C1CEBFDF50066ED85 /* WorkoutTemplates in Resources */ = {isa = PBXBuildFile; fileRef = 1EFF569B1CEBFDF50066ED85 /* WorkoutTemplates */; };
 		2A8672B006EBD9AA23ED9012 /* Pods_WorkoutWatch_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 672730A65F068DAF3899B49B /* Pods_WorkoutWatch_WatchKit_App.framework */; };
 		568022583F1A95AB5B40BED3 /* Pods_WorkoutWatchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44427555F05C96510666588 /* Pods_WorkoutWatchTests.framework */; };
 		9ABB88C297636FD31F0559F0 /* Pods_WorkoutWatch_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722E4111ECCB85FE6A5C9489 /* Pods_WorkoutWatch_WatchKit_Extension.framework */; };
@@ -76,27 +78,6 @@
 			remoteGlobalIDString = 1E1103D41CCBD96400E348E5;
 			remoteInfo = "WorkoutWatch WatchKit Extension";
 		};
-		1E7D56641CE98C9900E5C3D8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1E1103961CCBD96400E348E5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1E7D56581CE98C9800E5C3D8;
-			remoteInfo = HeartBeatKit;
-		};
-		1E7D56661CE98C9900E5C3D8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1E1103961CCBD96400E348E5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1E11039D1CCBD96400E348E5;
-			remoteInfo = WorkoutWatch;
-		};
-		1E7D566C1CE98C9900E5C3D8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1E1103961CCBD96400E348E5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1E7D56581CE98C9800E5C3D8;
-			remoteInfo = HeartBeatKit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -128,7 +109,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1E7D566F1CE98C9900E5C3D8 /* HeartBeatKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,24 +145,20 @@
 		1E1103F91CCBE38400E348E5 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		1E1103FB1CCBE7DB00E348E5 /* WorkoutWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "WorkoutWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		1E1103FC1CCBE7DB00E348E5 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		1E2447E01CF2606600C3B0EF /* WorkoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutController.swift; sourceTree = "<group>"; };
+		1E2448391CF2AD3B00C3B0EF /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		1E24483B1CF2AD3B00C3B0EF /* WorkoutStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutStep.swift; sourceTree = "<group>"; };
+		1E24483C1CF2AD3B00C3B0EF /* WorkoutTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTemplate.swift; sourceTree = "<group>"; };
+		1E24483E1CF2AD3B00C3B0EF /* WorkoutTemplateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTemplateService.swift; sourceTree = "<group>"; };
+		1E2448471CF2AD4300C3B0EF /* WorkoutTemplates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WorkoutTemplates; sourceTree = "<group>"; };
+		1E24484A1CF2C86100C3B0EF /* WorkoutSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutSessionManager.swift; sourceTree = "<group>"; };
 		1E6E8BCF1CCC695600646C16 /* WorkoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		1E7D55F71CE9741D00E5C3D8 /* OnboardingHealthKitPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingHealthKitPermissionsViewController.swift; sourceTree = "<group>"; };
 		1E7D55FA1CE979BC00E5C3D8 /* DefaultsKeysExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultsKeysExtension.swift; path = ../DefaultsKeysExtension.swift; sourceTree = "<group>"; };
-		1E7D56591CE98C9800E5C3D8 /* HeartBeatKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HeartBeatKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E7D565B1CE98C9900E5C3D8 /* HeartBeatKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeartBeatKit.h; sourceTree = "<group>"; };
-		1E7D565D1CE98C9900E5C3D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1E7D56621CE98C9900E5C3D8 /* HeartBeatKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeartBeatKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E7D56691CE98C9900E5C3D8 /* HeartBeatKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBeatKitTests.swift; sourceTree = "<group>"; };
-		1E7D566B1CE98C9900E5C3D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1E7D56771CE98CB700E5C3D8 /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		1E7D56791CE9909100E5C3D8 /* OnboardingAgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAgeViewController.swift; sourceTree = "<group>"; };
 		1EFACC561CEC1D00000D725F /* WorkoutTemplateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTemplateTableViewCell.swift; sourceTree = "<group>"; };
 		1EFACC581CEC2128000D725F /* ActiveWorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutViewController.swift; sourceTree = "<group>"; };
 		1EFF56891CEBE9B40066ED85 /* SelectWorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectWorkoutViewController.swift; sourceTree = "<group>"; };
-		1EFF568C1CEBEA180066ED85 /* WorkoutTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTemplate.swift; sourceTree = "<group>"; };
-		1EFF568F1CEBEEAE0066ED85 /* WorkoutTemplateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTemplateService.swift; sourceTree = "<group>"; };
-		1EFF56991CEBF76C0066ED85 /* WorkoutStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutStep.swift; sourceTree = "<group>"; };
-		1EFF569B1CEBFDF50066ED85 /* WorkoutTemplates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WorkoutTemplates; sourceTree = "<group>"; };
 		251F5316448304AB92FB2169 /* Pods-WorkoutWatchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutWatchTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutWatchTests/Pods-WorkoutWatchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		672730A65F068DAF3899B49B /* Pods_WorkoutWatch_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutWatch_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C7BE32F6B536C6626EDFD7C /* Pods-WorkoutWatchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutWatchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkoutWatchTests/Pods-WorkoutWatchTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -204,7 +180,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E1103FA1CCBE38400E348E5 /* HealthKit.framework in Frameworks */,
-				1E7D566E1CE98C9900E5C3D8 /* HeartBeatKit.framework in Frameworks */,
 				0CFE92DCF576F59D5A2B5A4D /* Pods_WorkoutWatch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,21 +209,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1E7D56551CE98C9800E5C3D8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E7D565F1CE98C9900E5C3D8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E7D56631CE98C9900E5C3D8 /* HeartBeatKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B2F081B6790C62C3A767F0F6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,13 +223,12 @@
 		1E1103951CCBD96400E348E5 = {
 			isa = PBXGroup;
 			children = (
+				1E2448301CF2ACDD00C3B0EF /* WorkoutWatch Shared Code */,
 				1E1103A01CCBD96400E348E5 /* WorkoutWatch */,
 				1E1103B51CCBD96400E348E5 /* WorkoutWatchTests */,
 				1E1103C01CCBD96400E348E5 /* WorkoutWatchUITests */,
 				1E1103CA1CCBD96400E348E5 /* WorkoutWatch WatchKit App */,
 				1E1103D91CCBD96400E348E5 /* WorkoutWatch WatchKit Extension */,
-				1E7D565A1CE98C9900E5C3D8 /* HeartBeatKit */,
-				1E7D56681CE98C9900E5C3D8 /* HeartBeatKitTests */,
 				1E11039F1CCBD96400E348E5 /* Products */,
 				2DE5EE489C3591494EA3512B /* Pods */,
 				CD467D5F62EAAAB8230DDE8F /* Frameworks */,
@@ -284,8 +243,6 @@
 				1E1103BD1CCBD96400E348E5 /* WorkoutWatchUITests.xctest */,
 				1E1103C61CCBD96400E348E5 /* WorkoutWatch WatchKit App.app */,
 				1E1103D51CCBD96400E348E5 /* WorkoutWatch WatchKit Extension.appex */,
-				1E7D56591CE98C9800E5C3D8 /* HeartBeatKit.framework */,
-				1E7D56621CE98C9900E5C3D8 /* HeartBeatKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -294,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				1EFACC551CEC1CD6000D725F /* Views */,
-				1EFF569B1CEBFDF50066ED85 /* WorkoutTemplates */,
 				1EFF568E1CEBEE630066ED85 /* Services */,
 				1EFF568B1CEBE9D80066ED85 /* Model */,
 				1E7D55F61CE973C800E5C3D8 /* Controllers */,
@@ -340,6 +296,7 @@
 		1E1103D91CCBD96400E348E5 /* WorkoutWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				1E2447E01CF2606600C3B0EF /* WorkoutController.swift */,
 				1E1103FB1CCBE7DB00E348E5 /* WorkoutWatch WatchKit Extension.entitlements */,
 				1E1103DC1CCBD96400E348E5 /* InterfaceController.swift */,
 				1E1103DE1CCBD96400E348E5 /* ExtensionDelegate.swift */,
@@ -361,6 +318,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1E2448301CF2ACDD00C3B0EF /* WorkoutWatch Shared Code */ = {
+			isa = PBXGroup;
+			children = (
+				1E2448471CF2AD4300C3B0EF /* WorkoutTemplates */,
+				1E2448391CF2AD3B00C3B0EF /* HealthKitManager.swift */,
+				1E24483A1CF2AD3B00C3B0EF /* Model */,
+				1E24483D1CF2AD3B00C3B0EF /* Services */,
+			);
+			path = "WorkoutWatch Shared Code";
+			sourceTree = "<group>";
+		};
+		1E24483A1CF2AD3B00C3B0EF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1E24483B1CF2AD3B00C3B0EF /* WorkoutStep.swift */,
+				1E24483C1CF2AD3B00C3B0EF /* WorkoutTemplate.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1E24483D1CF2AD3B00C3B0EF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1E24483E1CF2AD3B00C3B0EF /* WorkoutTemplateService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		1E7D55F61CE973C800E5C3D8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,25 +355,6 @@
 				1EFACC581CEC2128000D725F /* ActiveWorkoutViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		1E7D565A1CE98C9900E5C3D8 /* HeartBeatKit */ = {
-			isa = PBXGroup;
-			children = (
-				1E7D565B1CE98C9900E5C3D8 /* HeartBeatKit.h */,
-				1E7D565D1CE98C9900E5C3D8 /* Info.plist */,
-				1E7D56771CE98CB700E5C3D8 /* HealthKitManager.swift */,
-			);
-			path = HeartBeatKit;
-			sourceTree = "<group>";
-		};
-		1E7D56681CE98C9900E5C3D8 /* HeartBeatKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				1E7D56691CE98C9900E5C3D8 /* HeartBeatKitTests.swift */,
-				1E7D566B1CE98C9900E5C3D8 /* Info.plist */,
-			);
-			path = HeartBeatKitTests;
 			sourceTree = "<group>";
 		};
 		1EFACC551CEC1CD6000D725F /* Views */ = {
@@ -403,8 +369,6 @@
 			isa = PBXGroup;
 			children = (
 				1E7D55FA1CE979BC00E5C3D8 /* DefaultsKeysExtension.swift */,
-				1EFF568C1CEBEA180066ED85 /* WorkoutTemplate.swift */,
-				1EFF56991CEBF76C0066ED85 /* WorkoutStep.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -412,7 +376,7 @@
 		1EFF568E1CEBEE630066ED85 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				1EFF568F1CEBEEAE0066ED85 /* WorkoutTemplateService.swift */,
+				1E24484A1CF2C86100C3B0EF /* WorkoutSessionManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -448,17 +412,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		1E7D56561CE98C9800E5C3D8 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E7D565C1CE98C9900E5C3D8 /* HeartBeatKit.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		1E11039D1CCBD96400E348E5 /* WorkoutWatch */ = {
 			isa = PBXNativeTarget;
@@ -477,7 +430,6 @@
 			);
 			dependencies = (
 				1E1103C91CCBD96400E348E5 /* PBXTargetDependency */,
-				1E7D566D1CE98C9900E5C3D8 /* PBXTargetDependency */,
 			);
 			name = WorkoutWatch;
 			productName = WorkoutWatch;
@@ -565,43 +517,6 @@
 			productReference = 1E1103D51CCBD96400E348E5 /* WorkoutWatch WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		1E7D56581CE98C9800E5C3D8 /* HeartBeatKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1E7D56741CE98C9900E5C3D8 /* Build configuration list for PBXNativeTarget "HeartBeatKit" */;
-			buildPhases = (
-				1E7D56541CE98C9800E5C3D8 /* Sources */,
-				1E7D56551CE98C9800E5C3D8 /* Frameworks */,
-				1E7D56561CE98C9800E5C3D8 /* Headers */,
-				1E7D56571CE98C9800E5C3D8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HeartBeatKit;
-			productName = HeartBeatKit;
-			productReference = 1E7D56591CE98C9800E5C3D8 /* HeartBeatKit.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		1E7D56611CE98C9900E5C3D8 /* HeartBeatKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1E7D56761CE98C9900E5C3D8 /* Build configuration list for PBXNativeTarget "HeartBeatKitTests" */;
-			buildPhases = (
-				1E7D565E1CE98C9900E5C3D8 /* Sources */,
-				1E7D565F1CE98C9900E5C3D8 /* Frameworks */,
-				1E7D56601CE98C9900E5C3D8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1E7D56651CE98C9900E5C3D8 /* PBXTargetDependency */,
-				1E7D56671CE98C9900E5C3D8 /* PBXTargetDependency */,
-			);
-			name = HeartBeatKitTests;
-			productName = HeartBeatKitTests;
-			productReference = 1E7D56621CE98C9900E5C3D8 /* HeartBeatKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -642,14 +557,6 @@
 							};
 						};
 					};
-					1E7D56581CE98C9800E5C3D8 = {
-						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = S96FKFU6V6;
-					};
-					1E7D56611CE98C9900E5C3D8 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 1E11039D1CCBD96400E348E5;
-					};
 				};
 			};
 			buildConfigurationList = 1E1103991CCBD96400E348E5 /* Build configuration list for PBXProject "WorkoutWatch" */;
@@ -670,8 +577,6 @@
 				1E1103BC1CCBD96400E348E5 /* WorkoutWatchUITests */,
 				1E1103C51CCBD96400E348E5 /* WorkoutWatch WatchKit App */,
 				1E1103D41CCBD96400E348E5 /* WorkoutWatch WatchKit Extension */,
-				1E7D56581CE98C9800E5C3D8 /* HeartBeatKit */,
-				1E7D56611CE98C9900E5C3D8 /* HeartBeatKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -683,7 +588,7 @@
 			files = (
 				1E1103AC1CCBD96400E348E5 /* LaunchScreen.storyboard in Resources */,
 				1E1103A91CCBD96400E348E5 /* Assets.xcassets in Resources */,
-				1EFF569C1CEBFDF50066ED85 /* WorkoutTemplates in Resources */,
+				1E2448481CF2AD4300C3B0EF /* WorkoutTemplates in Resources */,
 				1E1103A71CCBD96400E348E5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,21 +620,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E2448491CF2AD4300C3B0EF /* WorkoutTemplates in Resources */,
 				1E1103E31CCBD96400E348E5 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E7D56571CE98C9800E5C3D8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E7D56601CE98C9900E5C3D8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,14 +832,16 @@
 			files = (
 				1EFF568A1CEBE9B40066ED85 /* SelectWorkoutViewController.swift in Sources */,
 				1E7D55F81CE9741D00E5C3D8 /* OnboardingHealthKitPermissionsViewController.swift in Sources */,
+				1E2448451CF2AD3B00C3B0EF /* WorkoutTemplateService.swift in Sources */,
+				1E24483F1CF2AD3B00C3B0EF /* HealthKitManager.swift in Sources */,
+				1E24484B1CF2C86100C3B0EF /* WorkoutSessionManager.swift in Sources */,
 				1EFACC571CEC1D00000D725F /* WorkoutTemplateTableViewCell.swift in Sources */,
 				1E7D567A1CE9909100E5C3D8 /* OnboardingAgeViewController.swift in Sources */,
+				1E2448431CF2AD3B00C3B0EF /* WorkoutTemplate.swift in Sources */,
 				1E1103A21CCBD96400E348E5 /* AppDelegate.swift in Sources */,
 				1EFACC591CEC2128000D725F /* ActiveWorkoutViewController.swift in Sources */,
-				1EFF568D1CEBEA180066ED85 /* WorkoutTemplate.swift in Sources */,
+				1E2448411CF2AD3B00C3B0EF /* WorkoutStep.swift in Sources */,
 				1E7D55FB1CE979BC00E5C3D8 /* DefaultsKeysExtension.swift in Sources */,
-				1EFF569A1CEBF76C0066ED85 /* WorkoutStep.swift in Sources */,
-				1EFF56901CEBEEAE0066ED85 /* WorkoutTemplateService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,26 +865,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E2448421CF2AD3B00C3B0EF /* WorkoutStep.swift in Sources */,
 				1E1103E11CCBD96400E348E5 /* NotificationController.swift in Sources */,
 				1E6E8BD01CCC695600646C16 /* WorkoutManager.swift in Sources */,
+				1E2448401CF2AD3B00C3B0EF /* HealthKitManager.swift in Sources */,
 				1E1103DF1CCBD96400E348E5 /* ExtensionDelegate.swift in Sources */,
 				1E1103DD1CCBD96400E348E5 /* InterfaceController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E7D56541CE98C9800E5C3D8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E7D56781CE98CB700E5C3D8 /* HealthKitManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E7D565E1CE98C9900E5C3D8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E7D566A1CE98C9900E5C3D8 /* HeartBeatKitTests.swift in Sources */,
+				1E2447E11CF2606600C3B0EF /* WorkoutController.swift in Sources */,
+				1E2448441CF2AD3B00C3B0EF /* WorkoutTemplate.swift in Sources */,
+				1E2448461CF2AD3B00C3B0EF /* WorkoutTemplateService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,21 +899,6 @@
 			isa = PBXTargetDependency;
 			target = 1E1103D41CCBD96400E348E5 /* WorkoutWatch WatchKit Extension */;
 			targetProxy = 1E1103D71CCBD96400E348E5 /* PBXContainerItemProxy */;
-		};
-		1E7D56651CE98C9900E5C3D8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1E7D56581CE98C9800E5C3D8 /* HeartBeatKit */;
-			targetProxy = 1E7D56641CE98C9900E5C3D8 /* PBXContainerItemProxy */;
-		};
-		1E7D56671CE98C9900E5C3D8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1E11039D1CCBD96400E348E5 /* WorkoutWatch */;
-			targetProxy = 1E7D56661CE98C9900E5C3D8 /* PBXContainerItemProxy */;
-		};
-		1E7D566D1CE98C9900E5C3D8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1E7D56581CE98C9800E5C3D8 /* HeartBeatKit */;
-			targetProxy = 1E7D566C1CE98C9900E5C3D8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1221,7 +1089,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WorkoutWatch/WorkoutWatch.entitlements;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WorkoutWatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lunarlincoln.WorkoutWatch;
@@ -1235,7 +1102,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WorkoutWatch/WorkoutWatch.entitlements;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WorkoutWatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lunarlincoln.WorkoutWatch;
@@ -1293,69 +1159,6 @@
 			};
 			name = Release;
 		};
-		1E7D56701CE98C9900E5C3D8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = HeartBeatKit/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lunarlincoln.HeartBeatKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		1E7D56711CE98C9900E5C3D8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = HeartBeatKit/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lunarlincoln.HeartBeatKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		1E7D56721CE98C9900E5C3D8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = HeartBeatKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lunarlincoln.HeartBeatKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutWatch.app/WorkoutWatch";
-			};
-			name = Debug;
-		};
-		1E7D56731CE98C9900E5C3D8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = HeartBeatKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lunarlincoln.HeartBeatKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutWatch.app/WorkoutWatch";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1409,24 +1212,6 @@
 			buildConfigurations = (
 				1E1103F61CCBD96400E348E5 /* Debug */,
 				1E1103F71CCBD96400E348E5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1E7D56741CE98C9900E5C3D8 /* Build configuration list for PBXNativeTarget "HeartBeatKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1E7D56701CE98C9900E5C3D8 /* Debug */,
-				1E7D56711CE98C9900E5C3D8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1E7D56761CE98C9900E5C3D8 /* Build configuration list for PBXNativeTarget "HeartBeatKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1E7D56721CE98C9900E5C3D8 /* Debug */,
-				1E7D56731CE98C9900E5C3D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

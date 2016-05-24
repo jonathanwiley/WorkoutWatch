@@ -12,14 +12,14 @@ public class HealthKitManager: NSObject {
     
     public static let sharedInstance = HealthKitManager()
     
-    let healthStore = HKHealthStore()
+    public let healthStore = HKHealthStore()
     
     private let ageCharacteristicType = HKObjectType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierDateOfBirth)!
     private let heartRateQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!
     private let activeEnergyBurnedQuantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)!
     private let workoutObjectType = HKObjectType.workoutType()
     
-    func isHealthKitAvailable() -> Bool {
+    public func isHealthKitAvailable() -> Bool {
         return HKHealthStore.isHealthDataAvailable()
     }
     
@@ -40,9 +40,9 @@ public class HealthKitManager: NSObject {
     public func age() -> Int? {
         
         do {
-            let birthDay = try healthStore.dateOfBirth()
-            let today = NSDate()
-            let differenceComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.Year, fromDate: birthDay, toDate: today, options: NSCalendarOptions.init(rawValue: 0))
+            let birthDate = try healthStore.dateOfBirth()
+            let nowDate = NSDate()
+            let differenceComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.Year, fromDate: birthDate, toDate: nowDate, options: NSCalendarOptions.init(rawValue: 0))
             let age = differenceComponents.year
             return age
         } catch {
@@ -50,6 +50,24 @@ public class HealthKitManager: NSObject {
         }
         
         return nil
+    }
+    
+    public func startHeartRateStreamingQuery(anchor: HKQueryAnchor, updateHandler: ((HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, NSError?) -> Void)) {
+        
+        let heartRateQuery = HKAnchoredObjectQuery(type: heartRateQuantityType, predicate: nil, anchor: anchor, limit: HKObjectQueryNoLimit, resultsHandler: updateHandler)
+        
+        heartRateQuery.updateHandler = updateHandler
+        
+        healthStore.executeQuery(heartRateQuery)
+    }
+    
+    public func startActiveEnergyBurnedStreamingQuery(anchor: HKQueryAnchor, updateHandler: ((HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, NSError?) -> Void)) {
+        
+        let activeEnergyBurnedQuery = HKAnchoredObjectQuery(type: activeEnergyBurnedQuantityType, predicate: nil, anchor: anchor, limit: HKObjectQueryNoLimit, resultsHandler: updateHandler)
+        
+        activeEnergyBurnedQuery.updateHandler = updateHandler
+        
+        healthStore.executeQuery(activeEnergyBurnedQuery)
     }
     
 }

@@ -8,10 +8,10 @@
 
 import UIKit
 
-class WorkoutTemplate: NSObject {
+public class WorkoutTemplate: NSObject {
     
-    let name : String
-    let workoutSteps: [WorkoutStep]
+    public let name : String
+    public let workoutSteps: [WorkoutStep]
     
     
     init(name: String, workoutSteps: [WorkoutStep]) {
@@ -21,7 +21,7 @@ class WorkoutTemplate: NSObject {
     }
     
     
-    func duration() -> Int {
+    func durationInMinutes() -> Int {
         
         var durationAccumulator = 0
         
@@ -32,4 +32,5 @@ class WorkoutTemplate: NSObject {
         
         return durationAccumulator
     }
+    
 }

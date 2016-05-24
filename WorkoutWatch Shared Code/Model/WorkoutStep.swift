@@ -6,7 +6,7 @@
 //  Copyright © 2016 Jonathan Wiley. All rights reserved.
 //
 
-class WorkoutStep {
+public class WorkoutStep {
     let minutes: Int
     let maxHeartRatePercentage: Int
     let minHeartRatePercentage: Int

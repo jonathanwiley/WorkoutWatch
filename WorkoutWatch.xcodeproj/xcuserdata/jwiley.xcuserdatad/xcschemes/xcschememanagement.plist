@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>HeartBeatKit (watchOS).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>HeartBeatKit copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>HeartBeatKit watchOS copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>HeartBeatKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -48,6 +63,21 @@
 			<true/>
 		</dict>
 		<key>1E1103C51CCBD96400E348E5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E2447F81CF2AAE900C3B0EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E24480B1CF2AB2D00C3B0EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E2448201CF2ACB900C3B0EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

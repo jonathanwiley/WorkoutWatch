@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WorkoutTemplateService {
+public class WorkoutTemplateService {
     
     private static let workoutNameKey = "Name"
     private static let workoutStepsKey = "WorkoutSteps"
@@ -16,9 +16,9 @@ class WorkoutTemplateService {
     private static let maxHeartRatePercentageKey = "Max Heart Rate Percentage"
     private static let minHeartRatePercentageKey = "Min Heart Rate Percentage"
     
-    static func fetchWorkoutTemplatesFromDisk() -> [WorkoutTemplate] {
+    public static func fetchWorkoutTemplatesFromDisk() -> [WorkoutTemplate] {
         
-        let workoutTemplatePlistPaths = NSBundle.mainBundle().pathsForResourcesOfType("plist", inDirectory: "WorkoutTemplates")
+        let workoutTemplatePlistPaths = NSBundle.init(forClass: self).pathsForResourcesOfType("plist", inDirectory: "WorkoutTemplates")
         
         var workoutTemplates = [WorkoutTemplate]()
         

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import HeartBeatKit
 import SwiftyUserDefaults
 
 class OnboardingAgeViewController: UIViewController {
