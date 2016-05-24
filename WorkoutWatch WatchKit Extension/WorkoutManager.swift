@@ -43,8 +43,7 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
     private let workoutObjectType = HKObjectType.workoutType()
     private var currentHeartRateStreamingQuery: HKQuery?
     private var currentActiveEnergyStreamingQuery: HKQuery?
-    private var heartRateAnchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
-    private var activeEnergyAnchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
+    
     private let heartRateUnit = HKUnit(fromString: "count/min")
     private var activeEnergyUnit = HKUnit.kilocalorieUnit()
     private var currentActiveEnergyQuantity = HKQuantity(unit: HKUnit.kilocalorieUnit(), doubleValue: 0.0)
@@ -125,100 +124,100 @@ public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
     
     private func hkWorkoutSessionStarted() {
 
-        if let currentHeartRateStreamingQuery = createHeartRateStreamingQuery()
-        {
-            healthStore.executeQuery(currentHeartRateStreamingQuery)
-        }
-        
-        if let currentActiveEnergyStreamingQuery = createActiveEnergyStreamingQuery()
-        {
-            healthStore.executeQuery(currentActiveEnergyStreamingQuery)
-        }
-        
-        if let hkWorkoutDelegate = delegate
-        {
-            hkWorkoutDelegate.workoutDidStart()
-        }
+//        if let currentHeartRateStreamingQuery = createHeartRateStreamingQuery()
+//        {
+//            healthStore.executeQuery(currentHeartRateStreamingQuery)
+//        }
+//        
+//        if let currentActiveEnergyStreamingQuery = createActiveEnergyStreamingQuery()
+//        {
+//            healthStore.executeQuery(currentActiveEnergyStreamingQuery)
+//        }
+//        
+//        if let hkWorkoutDelegate = delegate
+//        {
+//            hkWorkoutDelegate.workoutDidStart()
+//        }
     }
-    
+//
     private func hkWorkoutSessionEnded() {
-        
-        if let query = createHeartRateStreamingQuery()
-        {
-            healthStore.stopQuery(query)
-        }
-        
-        if let activeEnergyQuery = createActiveEnergyStreamingQuery()
-        {
-            healthStore.stopQuery(activeEnergyQuery)
-        }
-        
-        saveWorkout()
-        
-        if let hkWorkoutDelegate = delegate
-        {
-            hkWorkoutDelegate.workoutDidEnd()
-        }
+//
+//        if let query = createHeartRateStreamingQuery()
+//        {
+//            healthStore.stopQuery(query)
+//        }
+//        
+//        if let activeEnergyQuery = createActiveEnergyStreamingQuery()
+//        {
+//            healthStore.stopQuery(activeEnergyQuery)
+//        }
+//        
+//        saveWorkout()
+//        
+//        if let hkWorkoutDelegate = delegate
+//        {
+//            hkWorkoutDelegate.workoutDidEnd()
+//        }
     }
     
-    private func createHeartRateStreamingQuery() -> HKQuery? {
-        
-        guard let quantityType = heartRateQuantityType else { return nil }
-        
-        let heartRateQuery = HKAnchoredObjectQuery(type: quantityType, predicate: nil, anchor: heartRateAnchor, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, anchor, error) -> Void in
-            
-            if let error = error {
-                print("Error creating heart rate query: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let newAnchor = anchor else {return}
-            self.heartRateAnchor = newAnchor
-            
-            self.updateHeartRate(sampleObjects)
-        }
-        
-        heartRateQuery.updateHandler = {(query, samples, deleteObjects, anchor, error) -> Void in
-            
-            guard let newAnchor = anchor else {return}
-            self.heartRateAnchor = newAnchor
-            
-            self.updateHeartRate(samples)
-        }
-        
-        return heartRateQuery
-    }
+//    private func createHeartRateStreamingQuery() -> HKQuery? {
+//        
+//        guard let quantityType = heartRateQuantityType else { return nil }
+//        
+//        let heartRateQuery = HKAnchoredObjectQuery(type: quantityType, predicate: nil, anchor: heartRateAnchor, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, anchor, error) -> Void in
+//            
+//            if let error = error {
+//                print("Error creating heart rate query: \(error.localizedDescription)")
+//                return
+//            }
+//            
+//            guard let newAnchor = anchor else {return}
+//            self.heartRateAnchor = newAnchor
+//            
+//            self.updateHeartRate(sampleObjects)
+//        }
+//        
+//        heartRateQuery.updateHandler = {(query, samples, deleteObjects, anchor, error) -> Void in
+//            
+//            guard let newAnchor = anchor else {return}
+//            self.heartRateAnchor = newAnchor
+//            
+//            self.updateHeartRate(samples)
+//        }
+//        
+//        return heartRateQuery
+//    }
     
-    private func createActiveEnergyStreamingQuery() -> HKQuery? {
-        guard let activeEnergyType = activeEnergyBurnedQuantityType else { return nil }
-        
-        let activeEnergyQuery = HKAnchoredObjectQuery(type: activeEnergyType, predicate: nil, anchor: activeEnergyAnchor, limit: Int(HKObjectQueryNoLimit)) { query, samples, deletedObjects, anchor, error in
-            
-            if let error = error {
-                print("Error creating active energy query: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let newAnchor = anchor else {return}
-            self.activeEnergyAnchor = newAnchor
-            
-            self.updateActiveEnergyBurned(samples)
-        }
-        
-        activeEnergyQuery.updateHandler = { query, samples, deletedObjects, anchor, error in
-            
-            if let error = error {
-                print("An error occurred with the `activeEnergyQuery`. The error was: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let newAnchor = anchor else {return}
-            self.activeEnergyAnchor = newAnchor
-            
-            self.updateActiveEnergyBurned(samples)
-        }
-        return activeEnergyQuery
-    }
+//    private func createActiveEnergyStreamingQuery() -> HKQuery? {
+//        guard let activeEnergyType = activeEnergyBurnedQuantityType else { return nil }
+//        
+//        let activeEnergyQuery = HKAnchoredObjectQuery(type: activeEnergyType, predicate: nil, anchor: activeEnergyAnchor, limit: Int(HKObjectQueryNoLimit)) { query, samples, deletedObjects, anchor, error in
+//            
+//            if let error = error {
+//                print("Error creating active energy query: \(error.localizedDescription)")
+//                return
+//            }
+//            
+//            guard let newAnchor = anchor else {return}
+//            self.activeEnergyAnchor = newAnchor
+//            
+//            self.updateActiveEnergyBurned(samples)
+//        }
+//        
+//        activeEnergyQuery.updateHandler = { query, samples, deletedObjects, anchor, error in
+//            
+//            if let error = error {
+//                print("An error occurred with the `activeEnergyQuery`. The error was: \(error.localizedDescription)")
+//                return
+//            }
+//            
+//            guard let newAnchor = anchor else {return}
+//            self.activeEnergyAnchor = newAnchor
+//            
+//            self.updateActiveEnergyBurned(samples)
+//        }
+//        return activeEnergyQuery
+//    }
     
     private func updateHeartRate(samples: [HKSample]?) {
         
