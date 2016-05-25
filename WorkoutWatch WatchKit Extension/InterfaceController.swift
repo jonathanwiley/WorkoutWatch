@@ -18,26 +18,21 @@ class InterfaceController: WKInterfaceController, WorkoutManagerDelegate {
     @IBOutlet var timeRemainingTimer: WKInterfaceTimer!
     @IBOutlet var startStopButton: WKInterfaceButton!
     
+    var healthKitWorkoutObserver: HealthKitWorkoutObserver?
+    
+    var workoutTemplate: WorkoutTemplate?
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         WorkoutManager.sharedInstance.delegate = self
-        // Configure interface objects here.
     }
 
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
-        if (WorkoutManager.sharedInstance.currentWorkoutController?.workoutSession.startDate != nil) {
+        if (WorkoutManager.sharedInstance.isWorkoutInProgress) {
             workoutDidStart()
         }
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(workoutDidStart), name: WorkoutController.workoutStartedNotificationKey, object: nil)
-    }
-
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
     }
 
     @IBAction func startStopButtonPressed() {
@@ -45,13 +40,13 @@ class InterfaceController: WKInterfaceController, WorkoutManagerDelegate {
         if (WorkoutManager.sharedInstance.isWorkoutInProgress) {
             WorkoutManager.sharedInstance.stopWorkout()
         } else {
-            WorkoutManager.sharedInstance.startWorkout()
+            WorkoutManager.sharedInstance.startWorkout(workoutTemplate!)
         }
     }
     
     func workoutDidStart() {
         dispatch_async(dispatch_get_main_queue()) {
-            self.timeRemainingTimer.setDate(WorkoutManager.sharedInstance.currentWorkoutController!.workoutEndDate!)
+            self.timeRemainingTimer.setDate(WorkoutManager.sharedInstance.workoutEndDate!)
             self.timeRemainingTimer.start()
             
             self.startStopButton.setTitle("Stop Workout")

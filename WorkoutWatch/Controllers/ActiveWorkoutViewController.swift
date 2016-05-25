@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ActiveWorkoutViewController: UIViewController {
+class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDelegate {
 
     @IBOutlet weak var aboveBelowOnTargetLabel: UILabel!
     @IBOutlet weak var currentHeartRateLabel: UILabel!
@@ -20,6 +20,7 @@ class ActiveWorkoutViewController: UIViewController {
     @IBOutlet weak var startStopWorkoutButton: UIButton!
     
     var workoutTemplate: WorkoutTemplate?
+    var healthKitWorkoutObserver: HealthKitWorkoutObserver?
     
     var isWorkoutStarted = false
     
@@ -37,7 +38,7 @@ class ActiveWorkoutViewController: UIViewController {
     @IBAction func startEndWorkoutButtonPressed(sender: UIButton) {
         if (!isWorkoutStarted) {
             WatchConnectivityManager.sharedInstance.sendStartWorkoutMessage(workoutTemplate!, replyHandler: { (replyDictionary) in
-                if let workoutEndDateFromReply = replyDictionary[WatchConnectivityConstants.workoutEndDateKey] as! NSDate? {
+                if let workoutEndDateFromReply = replyDictionary[WatchConnectivityManager.workoutEndDateKey] as! NSDate? {
                     self.workoutEndDate = workoutEndDateFromReply
                     self.workoutStartDate = self.workoutEndDate?.dateByAddingTimeInterval(Double((self.workoutTemplate?.durationInMinutes())!*(-60)))
                 }
@@ -57,6 +58,7 @@ class ActiveWorkoutViewController: UIViewController {
         isWorkoutStarted = true
         workoutTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ActiveWorkoutViewController.updateTimeLabels), userInfo: nil, repeats: true)
         startStopWorkoutButton.setTitle("End Workout", forState: UIControlState.Normal)
+        healthKitWorkoutObserver = HealthKitWorkoutObserver(delegate: self)
     }
     
     func showOpenWatchAppToStartDialog() {
@@ -88,11 +90,18 @@ class ActiveWorkoutViewController: UIViewController {
     func updateTimeLabels() {
         updateTimeRemaining()
         updateTimeElapsed()
+        WatchConnectivityManager.sharedInstance.sendRequestUpdatedHeartRateMessage()
     }
     
     func secondsToHoursMinutesSeconds(seconds: Int) -> (String, String, String) {
         return (String(format: "%02d", seconds / 3600),
                 String(format: "%02d", (seconds % 3600) / 60),
                 String(format: "%02d", (seconds % 3600) % 60))
+    }
+    
+    func heartRateWasUpdated(currentHeartRate: Double) {
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.currentHeartRateLabel.text = String(currentHeartRate) + "bpm"
+        }
     }
 }

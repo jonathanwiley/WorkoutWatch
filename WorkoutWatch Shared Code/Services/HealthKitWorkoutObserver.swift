@@ -1,34 +1,21 @@
 //
-//  WorkoutController.swift
+//  HealthKitWorkoutObserver.swift
 //  WorkoutWatch
 //
-//  Created by Jonathan Wiley on 5/19/16.
+//  Created by Jonathan Wiley on 5/24/16.
 //  Copyright © 2016 Jonathan Wiley. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import HealthKit
 
-protocol WorkoutControllerDelegate: class {
-    func workoutDidStart()
-    func workoutDidEnd()
+protocol HealthKitWorkoutObserverDelegate: class {
     func heartRateWasUpdated(currentHeartRate: Double)
-    func newHeartRateReadingIsAboveTarget()
-    func newHeartRateReadingIsOnTarget()
-    func newHeartRateReadingIsBelowTarget()
 }
 
-class WorkoutController: NSObject, HKWorkoutSessionDelegate {
-
-    weak var delegate: WorkoutControllerDelegate?
+class HealthKitWorkoutObserver: NSObject {
     
-    private var workoutTimer : NSTimer?
-    var workoutEndDate: NSDate?
-    
-    static let workoutStartedNotificationKey = "com.lunarlincoln.workoutwatch.workoutStartedNotificationKey"
-    
-    private let workoutObjectType = HKObjectType.workoutType()
-    let workoutSession = HKWorkoutSession(activityType: HKWorkoutActivityType.Cycling, locationType: HKWorkoutSessionLocationType.Indoor)
+    weak var delegate: HealthKitWorkoutObserverDelegate?
     
     var heartRateAnchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
     private let heartRateUnit = HKUnit(fromString: "count/min")
@@ -41,27 +28,18 @@ class WorkoutController: NSObject, HKWorkoutSessionDelegate {
     private var activeEnergyBurnedSamples = [HKQuantitySample]()
     var currentActiveEnergyBurned: Double = 0
     
-    private let workoutTemplate : WorkoutTemplate
-    
-    init(workoutTemplate: WorkoutTemplate) {
+    init(delegate: HealthKitWorkoutObserverDelegate) {
         
-        self.workoutTemplate = workoutTemplate
+        self.delegate = delegate
         
         super.init()
-    }
-    
-    func startWorkout() {
-
-        HealthKitManager.sharedInstance.startHeartRateStreamingQuery(heartRateAnchor, updateHandler: heartRateUpdateHandler)
         
+        HealthKitManager.sharedInstance.startHeartRateStreamingQuery(heartRateAnchor, updateHandler: heartRateUpdateHandler)
         HealthKitManager.sharedInstance.startActiveEnergyBurnedStreamingQuery(activeEnergyBurnedAnchor, updateHandler: activeEnergyBurnedUpdateHandler)
         
-        workoutSession.delegate = self
-        HealthKitManager.sharedInstance.healthStore.startWorkoutSession(workoutSession)
-        
-        workoutEndDate = NSDate(timeIntervalSinceNow: Double(workoutTemplate.durationInMinutes()*60))
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(heartRateWasUpdatedByNotification), name: WatchConnectivityManager.heartRateUpdatedNotificationKey, object: nil)
     }
-    
+
     private(set) lazy var heartRateUpdateHandler:(HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, NSError?) -> Void = {
         (query: HKAnchoredObjectQuery, samples: [HKSample]?, deletedObjects: [HKDeletedObject]?, anchor: HKQueryAnchor?, error: NSError?) -> Void in
         
@@ -110,7 +88,6 @@ class WorkoutController: NSObject, HKWorkoutSessionDelegate {
         
         self.updateCurrentActiveEnergyBurned()
     }
-
     
     func processDeletedHeartRateSamples(deletedHeartRateSamples: [HKDeletedObject]) {
         
@@ -133,6 +110,15 @@ class WorkoutController: NSObject, HKWorkoutSessionDelegate {
             return
         }
         currentHeartRate = heartRateFromNewestSample.quantity.doubleValueForUnit(heartRateUnit)
+        delegate?.heartRateWasUpdated(currentHeartRate)
+        #if os(watchOS)
+        WatchConnectivityManager.sharedInstance.sendUpdatedHeartRateMessage(Int(currentHeartRate))
+        #endif
+    }
+    
+    func heartRateWasUpdatedByNotification(notification: NSNotification) {
+        currentHeartRate = notification.object as! Double
+        delegate?.heartRateWasUpdated(currentHeartRate)
     }
     
     func processDeletedActiveEnergyBurnedSamples(deletedActiveEnergyBurnedSamples: [HKDeletedObject]) {
@@ -151,30 +137,5 @@ class WorkoutController: NSObject, HKWorkoutSessionDelegate {
     
     func updateCurrentActiveEnergyBurned() {
         currentActiveEnergyBurned = activeEnergyBurnedSamples.reduce(Double(0)) {$0 + $1.quantity.doubleValueForUnit(activeEnergyBurnedUnit)}
-    }
-    
-    func workoutSession(workoutSession: HKWorkoutSession, didChangeToState toState: HKWorkoutSessionState, fromState: HKWorkoutSessionState, date: NSDate) {
-        
-        switch toState {
-        case .Running:
-            workoutTimer = NSTimer(fireDate: workoutEndDate!, interval: 0, target: self, selector: #selector(workoutTimerExpired), userInfo: nil, repeats: false)
-            CFRunLoopAddTimer(CFRunLoopGetCurrent(), workoutTimer, kCFRunLoopCommonModes)
-            NSNotificationCenter.defaultCenter().postNotificationName(WorkoutController.workoutStartedNotificationKey, object: nil)
-//        case .Ended:
-//            hkWorkoutSessionEnded()
-        default:
-            print("Unexpected state \(toState)")
-        }
-    }
-    
-    func workoutSession(workoutSession: HKWorkoutSession, didFailWithError error: NSError) {
-        // Do nothing for now
-        NSLog("Workout error: \(error.userInfo)")
-    }
-    
-    @objc private func workoutTimerExpired() {
-        
-        //TODO: open parent application and get it to send a local notification immediately saying that the workout timer has expired
-        //http://stackoverflow.com/questions/30102806/trigger-uilocalnotification-from-watchkit
     }
 }
