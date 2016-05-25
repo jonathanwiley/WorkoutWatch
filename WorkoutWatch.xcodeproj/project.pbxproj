@@ -261,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				1EFACC551CEC1CD6000D725F /* Views */,
-				1EFF568E1CEBEE630066ED85 /* Services */,
 				1EFF568B1CEBE9D80066ED85 /* Model */,
 				1E7D55F61CE973C800E5C3D8 /* Controllers */,
 				1E1103F81CCBE38400E348E5 /* WorkoutWatch.entitlements */,
@@ -270,7 +269,6 @@
 				1E1103A81CCBD96400E348E5 /* Assets.xcassets */,
 				1E1103AA1CCBD96400E348E5 /* LaunchScreen.storyboard */,
 				1E1103AD1CCBD96400E348E5 /* Info.plist */,
-				1E1103F91CCBE38400E348E5 /* HealthKit.framework */,
 			);
 			path = WorkoutWatch;
 			sourceTree = "<group>";
@@ -307,14 +305,11 @@
 			isa = PBXGroup;
 			children = (
 				1E2447E01CF2606600C3B0EF /* WorkoutSessionController.swift */,
-				1E1103FB1CCBE7DB00E348E5 /* WorkoutWatch WatchKit Extension.entitlements */,
 				1E1103DC1CCBD96400E348E5 /* InterfaceController.swift */,
 				1E1103DE1CCBD96400E348E5 /* ExtensionDelegate.swift */,
 				1E1103E01CCBD96400E348E5 /* NotificationController.swift */,
 				1E1103E21CCBD96400E348E5 /* Assets.xcassets */,
-				1E1103E41CCBD96400E348E5 /* Info.plist */,
 				1E1103DA1CCBD96400E348E5 /* Supporting Files */,
-				1E1103FC1CCBE7DB00E348E5 /* HealthKit.framework */,
 				1EB929D91CF62B8100315BD8 /* WatchWorkoutManager.swift */,
 			);
 			path = "WorkoutWatch WatchKit Extension";
@@ -323,6 +318,8 @@
 		1E1103DA1CCBD96400E348E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1E1103FB1CCBE7DB00E348E5 /* WorkoutWatch WatchKit Extension.entitlements */,
+				1E1103E41CCBD96400E348E5 /* Info.plist */,
 				1E1103DB1CCBD96400E348E5 /* PushNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
@@ -386,13 +383,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1EFF568E1CEBEE630066ED85 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		2DE5EE489C3591494EA3512B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +403,8 @@
 		CD467D5F62EAAAB8230DDE8F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E1103F91CCBE38400E348E5 /* HealthKit.framework */,
+				1E1103FC1CCBE7DB00E348E5 /* HealthKit.framework */,
 				1EB929C61CF537D100315BD8 /* WatchConnectivity.framework */,
 				1EB929C41CF537C900315BD8 /* WatchConnectivity.framework */,
 				93B22BBD26D5A2E5446FA6FC /* Pods_WorkoutWatch.framework */,

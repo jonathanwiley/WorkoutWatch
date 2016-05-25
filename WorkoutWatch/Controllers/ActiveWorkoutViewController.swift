@@ -10,14 +10,12 @@ import UIKit
 
 class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDelegate, WorkoutManagerDelegate {
 
-    @IBOutlet weak var aboveBelowOnTargetLabel: UILabel!
+    @IBOutlet weak var workoutNameLabel: UILabel!
+    @IBOutlet weak var currentTargetHeartRateRangeLabel: UILabel!
     @IBOutlet weak var currentHeartRateLabel: UILabel!
-    @IBOutlet weak var activeCaloriesLabel: UILabel!
-    @IBOutlet weak var totalCaloriesLabel: UILabel!
-    @IBOutlet weak var timeElapsedLabel: UILabel!
-    @IBOutlet weak var averageHeartRateLabel: UILabel!
+    @IBOutlet weak var aboveBelowOnTargetLabel: UILabel!
     @IBOutlet weak var timeRemainingLabel: UILabel!
-    @IBOutlet weak var startStopWorkoutButton: UIButton!
+    @IBOutlet weak var startWorkoutButton: UIButton!
     
     var workoutTemplate: WorkoutTemplate?
     
@@ -28,16 +26,27 @@ class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDel
         super.viewDidLoad()
 
         WorkoutManager.sharedInstance.delegate = self
+        
+        self.workoutNameLabel.text = workoutTemplate?.name
+        self.currentHeartRateLabel.text = ""
+        self.currentHeartRateLabel.text = ""
+        self.aboveBelowOnTargetLabel.text = ""
+        let (hours, minutes, seconds) = secondsToHoursMinutesSeconds((workoutTemplate?.durationInMinutes())!*60)
+        self.timeRemainingLabel.text = "\(hours):\(minutes):\(seconds)"
     }
 
-    @IBAction func startEndWorkoutButtonPressed(sender: UIButton) {
+    @IBAction func startWorkoutButtonPressed(sender: UIButton) {
+        
         if (!WorkoutManager.sharedInstance.isWorkoutInProgress) {
+            
             WatchConnectivityManager.sharedInstance.sendStartWorkoutMessage(workoutTemplate!, replyHandler: { (replyDictionary) in
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     self.startWorkout()
                 }
+                
             }) { error in
+                
                 dispatch_async(dispatch_get_main_queue()) {
                     self.showOpenWatchAppToStartDialog()
                 }
@@ -71,20 +80,8 @@ class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDel
         
     }
     
-    func updateTimeElapsed() {
-        let secondsElapsed = -(WorkoutManager.sharedInstance.workoutStartDate?.timeIntervalSinceNow)!
-        let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(Int(secondsElapsed))
-        timeElapsedLabel.text = "\(hours):\(minutes):\(seconds)"
-    }
-    
-    func timeIntervalUntilEndOfWorkout() {
-        
-    }
-    
     func updateTimeLabels() {
         updateTimeRemaining()
-        updateTimeElapsed()
-        WatchConnectivityManager.sharedInstance.sendRequestUpdatedHeartRateMessage()
     }
     
     func secondsToHoursMinutesSeconds(seconds: Int) -> (String, String, String) {
@@ -94,29 +91,46 @@ class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDel
     }
     
     func workoutDidStart() {
-        workoutTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ActiveWorkoutViewController.updateTimeLabels), userInfo: nil, repeats: true)
-        startStopWorkoutButton.setTitle("End Workout", forState: UIControlState.Normal)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.workoutTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ActiveWorkoutViewController.updateTimeLabels), userInfo: nil, repeats: true)
+            self.startWorkoutButton.hidden = true
+        }
     }
     
     func workoutDidEnd() {
-        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     func heartRateWasUpdated(currentHeartRate: Double) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.currentHeartRateLabel.text = String(currentHeartRate) + "bpm"
+            self.currentHeartRateLabel.text = String(Int(currentHeartRate)) + " BPM"
         }
     }
     
     func newHeartRateReadingIsAboveTarget() {
-        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.aboveBelowOnTargetLabel.text = "Above Target Heart Rate"
+            self.view.backgroundColor = UIColor.redColor()
+        }
     }
     
     func newHeartRateReadingIsOnTarget() {
-        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.aboveBelowOnTargetLabel.text = "On Target Heart Rate"
+            self.view.backgroundColor = UIColor.whiteColor()
+        }
     }
     
     func newHeartRateReadingIsBelowTarget() {
-        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.aboveBelowOnTargetLabel.text = "Below Target Heart Rate"
+            self.view.backgroundColor = UIColor.greenColor()
+        }
+    }
+    
+    func currentHeartRateTargetWasUpdated(minHeartRate: Int, maxHeartRate: Int) {
+        self.currentTargetHeartRateRangeLabel.text = "Current Target: \(minHeartRate) - \(maxHeartRate)"
     }
 }

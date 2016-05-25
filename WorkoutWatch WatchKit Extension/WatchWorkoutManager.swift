@@ -15,6 +15,7 @@ class WatchWorkoutManager: WorkoutManager {
     var currentWorkoutSessionController: WorkoutSessionController?
 
     override func startWorkout(workoutTemplate: WorkoutTemplate) {
+        
         super.startWorkout(workoutTemplate)
         
         currentWorkoutSessionController = WorkoutSessionController()
@@ -22,8 +23,16 @@ class WatchWorkoutManager: WorkoutManager {
     }
     
     override func stopWorkout() {
+        
         super.stopWorkout()
+        
         currentWorkoutSessionController?.endWorkout()
-        HealthKitManager.sharedInstance.saveWorkout((currentWorkoutSessionController?.workoutSession.startDate)!, endDate: (currentWorkoutSessionController?.workoutSession.endDate)!, activeEnergySamples: (currentHealthKitWorkoutObserver?.activeEnergyBurnedSamples)!, totalKiloCaloriesBurned: (currentHealthKitWorkoutObserver?.currentActiveEnergyBurned)!)
+        
+        let workoutStartDate = (currentWorkoutSessionController?.workoutSession.startDate)!
+        let workoutEndDate = NSDate()
+        let activeEnergySamples = (currentHealthKitWorkoutObserver?.activeEnergyBurnedSamples)!
+        let totalKiloCaloriesBurned = (currentHealthKitWorkoutObserver?.currentActiveEnergyBurned)!
+        
+        HealthKitManager.sharedInstance.saveWorkout(workoutStartDate, endDate: workoutEndDate, activeEnergySamples: activeEnergySamples, totalKiloCaloriesBurned: totalKiloCaloriesBurned)
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
@@ -12,27 +12,37 @@
                     <items>
                         <group width="1" height="1" alignment="left" layout="vertical" id="e9s-lS-vuB">
                             <items>
-                                <label width="1" alignment="left" text="---" textAlignment="center" id="av5-xk-hjJ" userLabel="Heart Rate Label">
-                                    <fontDescription key="font" type="boldSystem" pointSize="31"/>
-                                </label>
-                                <timer width="1" alignment="left" textAlignment="center" previewedSeconds="1800" id="DiY-2l-FD3">
-                                    <fontDescription key="font" type="boldSystem" pointSize="31"/>
-                                </timer>
-                                <button width="1" alignment="center" verticalAlignment="bottom" title="Start Workout" id="9G7-TV-7N9">
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="startStopButtonPressed" destination="AgC-eL-Hgc" id="mh0-ZI-UM5"/>
-                                    </connections>
-                                </button>
+                                <group width="1" height="1" alignment="left" id="KNt-hf-BIl" userLabel="Start A Workout Group">
+                                    <items>
+                                        <label height="1" alignment="left" text="Start a workout on your Phone to get started" textAlignment="center" numberOfLines="0" id="j6e-d3-Bz2"/>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" layout="vertical" id="CTd-Kw-fYv">
+                                    <items>
+                                        <label width="1" alignment="left" text="---" textAlignment="center" id="av5-xk-hjJ" userLabel="Heart Rate Label">
+                                            <fontDescription key="font" type="boldSystem" pointSize="31"/>
+                                        </label>
+                                        <timer width="1" alignment="left" textAlignment="center" previewedSeconds="1800" id="DiY-2l-FD3">
+                                            <fontDescription key="font" type="boldSystem" pointSize="31"/>
+                                        </timer>
+                                        <button width="1" alignment="center" verticalAlignment="bottom" title="Stop Workout" id="9G7-TV-7N9">
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="stopButtonPressed" destination="AgC-eL-Hgc" id="AFN-q5-5va"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
                             </items>
                             <edgeInsets key="margins" left="5" right="5" top="10" bottom="10"/>
                         </group>
                     </items>
                     <connections>
+                        <outlet property="containerInterfaceGroup" destination="e9s-lS-vuB" id="okV-CA-6ra"/>
                         <outlet property="heartRateLabel" destination="av5-xk-hjJ" id="05p-ie-fSc"/>
-                        <outlet property="startStopButton" destination="9G7-TV-7N9" id="lXW-Ou-k4M"/>
+                        <outlet property="startAWorkoutGroup" destination="KNt-hf-BIl" id="Dtp-3u-9Og"/>
                         <outlet property="timeRemainingTimer" destination="DiY-2l-FD3" id="kaj-9B-arb"/>
-                        <outlet property="uiInterfaceGroup" destination="e9s-lS-vuB" id="YfA-Hw-38g"/>
+                        <outlet property="workoutInterfaceGroup" destination="CTd-Kw-fYv" id="3Jq-nX-HxE"/>
                     </connections>
                 </controller>
             </objects>

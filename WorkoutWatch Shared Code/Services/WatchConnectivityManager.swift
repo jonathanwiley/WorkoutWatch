@@ -13,10 +13,10 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate {
     
     static let commandKey = "command"
     static let startWorkoutCommandString = "startWorkout"
+    static let endWorkoutCommandString = "endWorkout"
     static let workoutTemplateFileNameKey = "workoutTemplateFileName"
     static let workoutEndDateKey = "workoutEndDate"
     static let heartRateKey = "heartRate"
-    static let requestUpdatedHeartRateKey = "requestUpdatedHeartRateKey"
     
     static let heartRateUpdatedNotificationKey = "com.lunarlincoln.workoutwatch.heartRateUpdatedNotificationKey"
     
@@ -49,6 +49,13 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate {
         session.sendMessage(message, replyHandler:replyHandler, errorHandler: errorHandler)
     }
     
+    func sendEndWorkoutMessage(replyHandler: (([String : AnyObject]) -> Void)?, errorHandler: ((NSError) -> Void)?) {
+        
+        let message = [WatchConnectivityManager.commandKey : WatchConnectivityManager.endWorkoutCommandString]
+        
+        session.sendMessage(message, replyHandler: replyHandler, errorHandler: errorHandler)
+    }
+    
     func sendUpdatedHeartRateMessage(newHeartRate: Int) {
         
         let message = [WatchConnectivityManager.heartRateKey : newHeartRate]
@@ -60,12 +67,13 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate {
         if let heartRate = message[WatchConnectivityManager.heartRateKey] as! Int? {
             NSNotificationCenter.defaultCenter().postNotificationName(WatchConnectivityManager.heartRateUpdatedNotificationKey, object: heartRate)
         }
-    }
-    
-    func sendRequestUpdatedHeartRateMessage() {
-        
-        let message = [WatchConnectivityManager.commandKey : WatchConnectivityManager.requestUpdatedHeartRateKey]
-        
-        session.sendMessage(message, replyHandler: nil, errorHandler: nil)
+        if let command = message[WatchConnectivityManager.commandKey] as! String? {
+            switch command {
+            case WatchConnectivityManager.endWorkoutCommandString:
+                WorkoutManager.sharedInstance.stopWorkout()
+            default:
+                break
+            }
+        }
     }
 }

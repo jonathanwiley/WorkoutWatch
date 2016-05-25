@@ -21,30 +21,23 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
         }
     }
 
-    func applicationDidBecomeActive() {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillResignActive() {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, etc.
-    }
-
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         
         print("recieved message \(message)")
         
         if let command = message[WatchConnectivityManager.commandKey] as! String? {
+            
             switch command {
             case WatchConnectivityManager.startWorkoutCommandString:
+                
                 if let workoutTemplateFileName = message[WatchConnectivityManager.workoutTemplateFileNameKey] as! String? {
+                    
                     if let workoutTemplate = WorkoutTemplateService.fetchWorkoutTemplateWithFileName(workoutTemplateFileName) {
+                        
                         WatchWorkoutManager.sharedWatchInstance.startWorkout(workoutTemplate)
                         replyHandler([WatchConnectivityManager.workoutEndDateKey : (WatchWorkoutManager.sharedWatchInstance.workoutEndDate)!])
                     }
                 }
-            case WatchConnectivityManager.requestUpdatedHeartRateKey:
-                break
             default:
                 break
             }

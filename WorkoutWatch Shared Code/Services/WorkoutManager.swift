@@ -16,9 +16,10 @@ protocol WorkoutManagerDelegate: class {
     func newHeartRateReadingIsAboveTarget()
     func newHeartRateReadingIsOnTarget()
     func newHeartRateReadingIsBelowTarget()
+    func currentHeartRateTargetWasUpdated(minHeartRate: Int, maxHeartRate: Int)
 }
 
-public class WorkoutManager: NSObject, HealthKitWorkoutObserverDelegate  {
+public class WorkoutManager: HealthKitWorkoutObserverDelegate  {
     
     static let sharedInstance = WorkoutManager()
     
@@ -34,6 +35,12 @@ public class WorkoutManager: NSObject, HealthKitWorkoutObserverDelegate  {
     
     var workoutTemplate: WorkoutTemplate?
     
+    let maxHeartRate: Int
+    
+    init() {
+        maxHeartRate = 220 - HealthKitManager.sharedInstance.age()!
+    }
+    
     func startWorkout(workoutTemplate: WorkoutTemplate) {
         
         isWorkoutInProgress = true
@@ -44,6 +51,8 @@ public class WorkoutManager: NSObject, HealthKitWorkoutObserverDelegate  {
         currentHealthKitWorkoutObserver = HealthKitWorkoutObserver(delegate: self)
         
         delegate?.workoutDidStart()
+        
+        delegate?.currentHeartRateTargetWasUpdated(currentWorkoutStep().minHeartRatePercentage*maxHeartRate/100, maxHeartRate: currentWorkoutStep().maxHeartRatePercentage*maxHeartRate/100)
     }
     
     func stopWorkout() {
@@ -53,6 +62,24 @@ public class WorkoutManager: NSObject, HealthKitWorkoutObserverDelegate  {
     }
     
     func heartRateWasUpdated(currentHeartRate: Double) {
+        
+        if (Int(currentHeartRate) < currentWorkoutStep().maxHeartRatePercentage*maxHeartRate/100 && Int(currentHeartRate) > currentWorkoutStep().minHeartRatePercentage*maxHeartRate/100)
+        {
+            delegate?.newHeartRateReadingIsOnTarget()
+        }
+        else if (Int(currentHeartRate) > currentWorkoutStep().maxHeartRatePercentage*maxHeartRate/100)
+        {
+            delegate?.newHeartRateReadingIsAboveTarget()
+        }
+        else if (Int(currentHeartRate) < currentWorkoutStep().minHeartRatePercentage*maxHeartRate/100)
+        {
+            delegate?.newHeartRateReadingIsBelowTarget()
+        }
+        
         delegate?.heartRateWasUpdated(currentHeartRate)
+    }
+    
+    func currentWorkoutStep() -> WorkoutStep {
+        return (workoutTemplate?.workoutSteps[0])!
     }
 }

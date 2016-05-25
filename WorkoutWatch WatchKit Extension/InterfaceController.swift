@@ -13,14 +13,11 @@ import HealthKit
 
 class InterfaceController: WKInterfaceController, WorkoutManagerDelegate {
     
-    @IBOutlet var uiInterfaceGroup: WKInterfaceGroup!
+    @IBOutlet var containerInterfaceGroup: WKInterfaceGroup!
+    @IBOutlet var startAWorkoutGroup: WKInterfaceGroup!
+    @IBOutlet var workoutInterfaceGroup: WKInterfaceGroup!
     @IBOutlet var heartRateLabel: WKInterfaceLabel!
     @IBOutlet var timeRemainingTimer: WKInterfaceTimer!
-    @IBOutlet var startStopButton: WKInterfaceButton!
-    
-    var healthKitWorkoutObserver: HealthKitWorkoutObserver?
-    
-    var workoutTemplate: WorkoutTemplate?
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -35,12 +32,12 @@ class InterfaceController: WKInterfaceController, WorkoutManagerDelegate {
         }
     }
 
-    @IBAction func startStopButtonPressed() {
+    @IBAction func stopButtonPressed() {
         
         if (WatchWorkoutManager.sharedWatchInstance.isWorkoutInProgress) {
             WatchWorkoutManager.sharedWatchInstance.stopWorkout()
-        } else {
-            WatchWorkoutManager.sharedWatchInstance.startWorkout(workoutTemplate!)
+            
+            WatchConnectivityManager.sharedInstance.sendEndWorkoutMessage(nil, errorHandler: nil)
         }
     }
     
@@ -49,19 +46,21 @@ class InterfaceController: WKInterfaceController, WorkoutManagerDelegate {
             self.timeRemainingTimer.setDate(WatchWorkoutManager.sharedWatchInstance.workoutEndDate!)
             self.timeRemainingTimer.start()
             
-            self.startStopButton.setTitle("Stop Workout")
+            self.startAWorkoutGroup.setHidden(true)
+            self.workoutInterfaceGroup.setHidden(false)
         }
     }
     
     func workoutDidEnd() {
         dispatch_async(dispatch_get_main_queue()) { 
-            self.uiInterfaceGroup.setBackgroundColor(UIColor.clearColor())
+            self.containerInterfaceGroup.setBackgroundColor(UIColor.clearColor())
+            
+            self.workoutInterfaceGroup.setHidden(true)
+            self.startAWorkoutGroup.setHidden(false)
             
             self.heartRateLabel.setText("---")
             
             self.timeRemainingTimer.stop()
-            
-            self.startStopButton.setTitle("Start Workout")
         }
     }
     
@@ -72,16 +71,20 @@ class InterfaceController: WKInterfaceController, WorkoutManagerDelegate {
     func newHeartRateReadingIsAboveTarget() {
         WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Failure)
         
-        self.uiInterfaceGroup.setBackgroundColor(UIColor.redColor())
+        self.containerInterfaceGroup.setBackgroundColor(UIColor.redColor())
     }
     
     func newHeartRateReadingIsOnTarget() {
-        self.uiInterfaceGroup.setBackgroundColor(UIColor.clearColor())
+        self.containerInterfaceGroup.setBackgroundColor(UIColor.clearColor())
     }
     
     func newHeartRateReadingIsBelowTarget() {
         WKInterfaceDevice.currentDevice().playHaptic(WKHapticType.Success)
         
-        self.uiInterfaceGroup.setBackgroundColor(UIColor.greenColor())
+        self.containerInterfaceGroup.setBackgroundColor(UIColor.greenColor())
+    }
+    
+    func currentHeartRateTargetWasUpdated(minHeartRate: Int, maxHeartRate: Int) {
+        // no-op
     }
 }

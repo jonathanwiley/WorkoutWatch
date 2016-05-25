@@ -34,6 +34,10 @@ class SelectWorkoutViewController: UIViewController, UITableViewDataSource, UITa
         return workoutTemplateCell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "StartActiveWorkoutSegue" {

@@ -10,9 +10,9 @@
 			<key>Minutes</key>
 			<integer>30</integer>
 			<key>Max Heart Rate Percentage</key>
-			<integer>60</integer>
-			<key>Min Heart Rate Percentage</key>
 			<integer>70</integer>
+			<key>Min Heart Rate Percentage</key>
+			<integer>60</integer>
 		</dict>
 	</array>
 </dict>
