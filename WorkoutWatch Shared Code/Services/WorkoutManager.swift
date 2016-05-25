@@ -19,7 +19,7 @@ protocol WorkoutManagerDelegate: class {
     func currentHeartRateTargetWasUpdated(minHeartRate: Int, maxHeartRate: Int)
 }
 
-public class WorkoutManager: HealthKitWorkoutObserverDelegate  {
+public class WorkoutManager: NSObject, HealthKitWorkoutObserverDelegate  {
     
     static let sharedInstance = WorkoutManager()
     
@@ -35,13 +35,11 @@ public class WorkoutManager: HealthKitWorkoutObserverDelegate  {
     
     var workoutTemplate: WorkoutTemplate?
     
-    let maxHeartRate: Int
-    
-    init() {
-        maxHeartRate = 220 - HealthKitManager.sharedInstance.age()!
-    }
+    var maxHeartRate: Int?
     
     func startWorkout(workoutTemplate: WorkoutTemplate) {
+        
+        maxHeartRate = 220 - HealthKitManager.sharedInstance.age()!
         
         isWorkoutInProgress = true
         self.workoutTemplate = workoutTemplate
@@ -52,7 +50,7 @@ public class WorkoutManager: HealthKitWorkoutObserverDelegate  {
         
         delegate?.workoutDidStart()
         
-        delegate?.currentHeartRateTargetWasUpdated(currentWorkoutStep().minHeartRatePercentage*maxHeartRate/100, maxHeartRate: currentWorkoutStep().maxHeartRatePercentage*maxHeartRate/100)
+        delegate?.currentHeartRateTargetWasUpdated(currentWorkoutStep().minHeartRatePercentage*maxHeartRate!/100, maxHeartRate: currentWorkoutStep().maxHeartRatePercentage*maxHeartRate!/100)
     }
     
     func stopWorkout() {
@@ -63,15 +61,18 @@ public class WorkoutManager: HealthKitWorkoutObserverDelegate  {
     
     func heartRateWasUpdated(currentHeartRate: Double) {
         
-        if (Int(currentHeartRate) < currentWorkoutStep().maxHeartRatePercentage*maxHeartRate/100 && Int(currentHeartRate) > currentWorkoutStep().minHeartRatePercentage*maxHeartRate/100)
+        let maxTargetHeartRate = currentWorkoutStep().maxHeartRatePercentage/100*maxHeartRate!
+        let minTargetHeartRate = currentWorkoutStep().minHeartRatePercentage/100*maxHeartRate!
+        
+        if (Int(currentHeartRate) < maxTargetHeartRate && Int(currentHeartRate) > minTargetHeartRate)
         {
             delegate?.newHeartRateReadingIsOnTarget()
         }
-        else if (Int(currentHeartRate) > currentWorkoutStep().maxHeartRatePercentage*maxHeartRate/100)
+        else if (Int(currentHeartRate) > maxTargetHeartRate)
         {
             delegate?.newHeartRateReadingIsAboveTarget()
         }
-        else if (Int(currentHeartRate) < currentWorkoutStep().minHeartRatePercentage*maxHeartRate/100)
+        else if (Int(currentHeartRate) < minTargetHeartRate)
         {
             delegate?.newHeartRateReadingIsBelowTarget()
         }
