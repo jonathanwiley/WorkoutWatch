@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDelegate {
+class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDelegate, WorkoutManagerDelegate {
 
     @IBOutlet weak var aboveBelowOnTargetLabel: UILabel!
     @IBOutlet weak var currentHeartRateLabel: UILabel!
@@ -20,53 +20,47 @@ class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDel
     @IBOutlet weak var startStopWorkoutButton: UIButton!
     
     var workoutTemplate: WorkoutTemplate?
-    var healthKitWorkoutObserver: HealthKitWorkoutObserver?
     
-    var isWorkoutStarted = false
-    
-    var workoutStartDate: NSDate?
-    var workoutEndDate : NSDate?
     var workoutTimer: NSTimer?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        WorkoutManager.sharedInstance.delegate = self
     }
 
     @IBAction func startEndWorkoutButtonPressed(sender: UIButton) {
-        if (!isWorkoutStarted) {
+        if (!WorkoutManager.sharedInstance.isWorkoutInProgress) {
             WatchConnectivityManager.sharedInstance.sendStartWorkoutMessage(workoutTemplate!, replyHandler: { (replyDictionary) in
-                if let workoutEndDateFromReply = replyDictionary[WatchConnectivityManager.workoutEndDateKey] as! NSDate? {
-                    self.workoutEndDate = workoutEndDateFromReply
-                    self.workoutStartDate = self.workoutEndDate?.dateByAddingTimeInterval(Double((self.workoutTemplate?.durationInMinutes())!*(-60)))
-                }
+                
                 dispatch_async(dispatch_get_main_queue()) {
                     self.startWorkout()
                 }
             }) { error in
-                self.showOpenWatchAppToStartDialog()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.showOpenWatchAppToStartDialog()
+                }
             }
-        }
-        else {
-            
         }
     }
     
     func startWorkout() {
-        isWorkoutStarted = true
-        workoutTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ActiveWorkoutViewController.updateTimeLabels), userInfo: nil, repeats: true)
-        startStopWorkoutButton.setTitle("End Workout", forState: UIControlState.Normal)
-        healthKitWorkoutObserver = HealthKitWorkoutObserver(delegate: self)
+        
+        WorkoutManager.sharedInstance.startWorkout(workoutTemplate!)
     }
     
     func showOpenWatchAppToStartDialog() {
         
+        let openWatchAlertController = UIAlertController(title: "Open Watch App", message: "Open the watch app and then try to start the workout again.", preferredStyle: UIAlertControllerStyle.Alert)
+        let uiAlertCancelAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+        openWatchAlertController.addAction(uiAlertCancelAction)
+        
+        self.presentViewController(openWatchAlertController, animated: true, completion: nil)
     }
     
     func updateTimeRemaining() {
-        let secondsRemaining = (self.workoutEndDate?.timeIntervalSinceNow)!
+        let secondsRemaining = (WorkoutManager.sharedInstance.workoutEndDate?.timeIntervalSinceNow)!
         if (secondsRemaining > 0) {
             let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(Int(secondsRemaining))
             timeRemainingLabel.text = "\(hours):\(minutes):\(seconds)"
@@ -78,7 +72,7 @@ class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDel
     }
     
     func updateTimeElapsed() {
-        let secondsElapsed = -(self.workoutStartDate?.timeIntervalSinceNow)!
+        let secondsElapsed = -(WorkoutManager.sharedInstance.workoutStartDate?.timeIntervalSinceNow)!
         let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(Int(secondsElapsed))
         timeElapsedLabel.text = "\(hours):\(minutes):\(seconds)"
     }
@@ -99,9 +93,30 @@ class ActiveWorkoutViewController: UIViewController, HealthKitWorkoutObserverDel
                 String(format: "%02d", (seconds % 3600) % 60))
     }
     
+    func workoutDidStart() {
+        workoutTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ActiveWorkoutViewController.updateTimeLabels), userInfo: nil, repeats: true)
+        startStopWorkoutButton.setTitle("End Workout", forState: UIControlState.Normal)
+    }
+    
+    func workoutDidEnd() {
+        
+    }
+    
     func heartRateWasUpdated(currentHeartRate: Double) {
-        dispatch_async(dispatch_get_main_queue()) { 
+        dispatch_async(dispatch_get_main_queue()) {
             self.currentHeartRateLabel.text = String(currentHeartRate) + "bpm"
         }
+    }
+    
+    func newHeartRateReadingIsAboveTarget() {
+        
+    }
+    
+    func newHeartRateReadingIsOnTarget() {
+        
+    }
+    
+    func newHeartRateReadingIsBelowTarget() {
+        
     }
 }

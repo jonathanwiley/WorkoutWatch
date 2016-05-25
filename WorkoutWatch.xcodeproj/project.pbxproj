@@ -43,7 +43,9 @@
 		1EB929D31CF55B2C00315BD8 /* HealthKitWorkoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB929D21CF55B2C00315BD8 /* HealthKitWorkoutObserver.swift */; };
 		1EB929D41CF55B2C00315BD8 /* HealthKitWorkoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB929D21CF55B2C00315BD8 /* HealthKitWorkoutObserver.swift */; };
 		1EB929D51CF5626500315BD8 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E24484C1CF51A7700C3B0EF /* WatchConnectivityManager.swift */; };
-		1EB929D81CF56CCF00315BD8 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB929D61CF56CCE00315BD8 /* WorkoutManager.swift */; };
+		1EB929DA1CF62B8100315BD8 /* WatchWorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB929D91CF62B8100315BD8 /* WatchWorkoutManager.swift */; };
+		1EB929DC1CF62C2100315BD8 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB929DB1CF62C2100315BD8 /* WorkoutManager.swift */; };
+		1EB929DD1CF62C2100315BD8 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB929DB1CF62C2100315BD8 /* WorkoutManager.swift */; };
 		1EFACC571CEC1D00000D725F /* WorkoutTemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFACC561CEC1D00000D725F /* WorkoutTemplateTableViewCell.swift */; };
 		1EFACC591CEC2128000D725F /* ActiveWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFACC581CEC2128000D725F /* ActiveWorkoutViewController.swift */; };
 		1EFF568A1CEBE9B40066ED85 /* SelectWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFF56891CEBE9B40066ED85 /* SelectWorkoutViewController.swift */; };
@@ -162,7 +164,8 @@
 		1EB929C41CF537C900315BD8 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		1EB929C61CF537D100315BD8 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		1EB929D21CF55B2C00315BD8 /* HealthKitWorkoutObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitWorkoutObserver.swift; sourceTree = "<group>"; };
-		1EB929D61CF56CCE00315BD8 /* WorkoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
+		1EB929D91CF62B8100315BD8 /* WatchWorkoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchWorkoutManager.swift; sourceTree = "<group>"; };
+		1EB929DB1CF62C2100315BD8 /* WorkoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		1EFACC561CEC1D00000D725F /* WorkoutTemplateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTemplateTableViewCell.swift; sourceTree = "<group>"; };
 		1EFACC581CEC2128000D725F /* ActiveWorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutViewController.swift; sourceTree = "<group>"; };
 		1EFF56891CEBE9B40066ED85 /* SelectWorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectWorkoutViewController.swift; sourceTree = "<group>"; };
@@ -303,7 +306,6 @@
 		1E1103D91CCBD96400E348E5 /* WorkoutWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				1EB929D61CF56CCE00315BD8 /* WorkoutManager.swift */,
 				1E2447E01CF2606600C3B0EF /* WorkoutSessionController.swift */,
 				1E1103FB1CCBE7DB00E348E5 /* WorkoutWatch WatchKit Extension.entitlements */,
 				1E1103DC1CCBD96400E348E5 /* InterfaceController.swift */,
@@ -313,6 +315,7 @@
 				1E1103E41CCBD96400E348E5 /* Info.plist */,
 				1E1103DA1CCBD96400E348E5 /* Supporting Files */,
 				1E1103FC1CCBE7DB00E348E5 /* HealthKit.framework */,
+				1EB929D91CF62B8100315BD8 /* WatchWorkoutManager.swift */,
 			);
 			path = "WorkoutWatch WatchKit Extension";
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 		1E24483D1CF2AD3B00C3B0EF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1EB929DB1CF62C2100315BD8 /* WorkoutManager.swift */,
 				1E24483E1CF2AD3B00C3B0EF /* WorkoutTemplateService.swift */,
 				1EB929D21CF55B2C00315BD8 /* HealthKitWorkoutObserver.swift */,
 				1E24484C1CF51A7700C3B0EF /* WatchConnectivityManager.swift */,
@@ -842,6 +846,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EFF568A1CEBE9B40066ED85 /* SelectWorkoutViewController.swift in Sources */,
+				1EB929DC1CF62C2100315BD8 /* WorkoutManager.swift in Sources */,
 				1E7D55F81CE9741D00E5C3D8 /* OnboardingHealthKitPermissionsViewController.swift in Sources */,
 				1E2448451CF2AD3B00C3B0EF /* WorkoutTemplateService.swift in Sources */,
 				1E24483F1CF2AD3B00C3B0EF /* HealthKitManager.swift in Sources */,
@@ -881,11 +886,12 @@
 				1E1103E11CCBD96400E348E5 /* NotificationController.swift in Sources */,
 				1E2448401CF2AD3B00C3B0EF /* HealthKitManager.swift in Sources */,
 				1EB929D41CF55B2C00315BD8 /* HealthKitWorkoutObserver.swift in Sources */,
-				1EB929D81CF56CCF00315BD8 /* WorkoutManager.swift in Sources */,
 				1E1103DF1CCBD96400E348E5 /* ExtensionDelegate.swift in Sources */,
+				1EB929DD1CF62C2100315BD8 /* WorkoutManager.swift in Sources */,
 				1E1103DD1CCBD96400E348E5 /* InterfaceController.swift in Sources */,
 				1E2447E11CF2606600C3B0EF /* WorkoutSessionController.swift in Sources */,
 				1E2448441CF2AD3B00C3B0EF /* WorkoutTemplate.swift in Sources */,
+				1EB929DA1CF62B8100315BD8 /* WatchWorkoutManager.swift in Sources */,
 				1EB929D51CF5626500315BD8 /* WatchConnectivityManager.swift in Sources */,
 				1E2448461CF2AD3B00C3B0EF /* WorkoutTemplateService.swift in Sources */,
 			);

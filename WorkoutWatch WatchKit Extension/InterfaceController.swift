@@ -24,29 +24,29 @@ class InterfaceController: WKInterfaceController, WorkoutManagerDelegate {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        WorkoutManager.sharedInstance.delegate = self
+        WatchWorkoutManager.sharedWatchInstance.delegate = self
     }
 
     override func willActivate() {
         super.willActivate()
         
-        if (WorkoutManager.sharedInstance.isWorkoutInProgress) {
+        if (WatchWorkoutManager.sharedWatchInstance.isWorkoutInProgress) {
             workoutDidStart()
         }
     }
 
     @IBAction func startStopButtonPressed() {
         
-        if (WorkoutManager.sharedInstance.isWorkoutInProgress) {
-            WorkoutManager.sharedInstance.stopWorkout()
+        if (WatchWorkoutManager.sharedWatchInstance.isWorkoutInProgress) {
+            WatchWorkoutManager.sharedWatchInstance.stopWorkout()
         } else {
-            WorkoutManager.sharedInstance.startWorkout(workoutTemplate!)
+            WatchWorkoutManager.sharedWatchInstance.startWorkout(workoutTemplate!)
         }
     }
     
     func workoutDidStart() {
         dispatch_async(dispatch_get_main_queue()) {
-            self.timeRemainingTimer.setDate(WorkoutManager.sharedInstance.workoutEndDate!)
+            self.timeRemainingTimer.setDate(WatchWorkoutManager.sharedWatchInstance.workoutEndDate!)
             self.timeRemainingTimer.start()
             
             self.startStopButton.setTitle("Stop Workout")

@@ -39,10 +39,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
             case WatchConnectivityManager.startWorkoutCommandString:
                 if let workoutTemplateFileName = message[WatchConnectivityManager.workoutTemplateFileNameKey] as! String? {
                     if let workoutTemplate = WorkoutTemplateService.fetchWorkoutTemplateWithFileName(workoutTemplateFileName) {
-                        WorkoutManager.sharedInstance.startWorkout(workoutTemplate)
-                        WorkoutManager.sharedInstance.currentWorkoutSessionController = WorkoutSessionController()
-                        WorkoutManager.sharedInstance.currentWorkoutSessionController?.startWorkout()
-                        replyHandler([WatchConnectivityManager.workoutEndDateKey : (WorkoutManager.sharedInstance.workoutEndDate)!])
+                        WatchWorkoutManager.sharedWatchInstance.startWorkout(workoutTemplate)
+                        replyHandler([WatchConnectivityManager.workoutEndDateKey : (WatchWorkoutManager.sharedWatchInstance.workoutEndDate)!])
                     }
                 }
             case WatchConnectivityManager.requestUpdatedHeartRateKey:

@@ -70,4 +70,32 @@ public class HealthKitManager: NSObject {
         healthStore.executeQuery(activeEnergyBurnedQuery)
     }
     
+
+    public func saveWorkout(startDate: NSDate, endDate: NSDate, activeEnergySamples: [HKSample], totalKiloCaloriesBurned: Double) {
+        
+        let totalEnergyBurned = HKQuantity(unit: HKUnit.kilocalorieUnit(), doubleValue: totalKiloCaloriesBurned)
+        
+        /*
+         NOTE: There is a known bug where activityType property of HKWorkoutSession returns 0, as of iOS 9.1 and watchOS 2.0.1. So, rather than set it using the value from the `HKWorkoutSession`, set it explicitly for the HKWorkout object.
+         */
+        let workout = HKWorkout(activityType: HKWorkoutActivityType.Cycling, startDate: startDate, endDate: endDate, duration: endDate.timeIntervalSinceDate(startDate), totalEnergyBurned: totalEnergyBurned, totalDistance: HKQuantity(unit: HKUnit.meterUnit(), doubleValue: 0.0), metadata: nil)
+
+        let finalActiveEnergySamples = activeEnergySamples
+
+        healthStore.saveObject(workout) { (success, error) in
+            if let error = error where !success {
+                print("Error saving the workout: \(error.localizedDescription)")
+                return
+            }
+            
+            if success && finalActiveEnergySamples.count > 0 {
+                self.healthStore.addSamples(finalActiveEnergySamples, toWorkout: workout) { (success, error) in
+                    if let error = error where !success {
+                        print("Error adding active energy samples to workout: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+    }
+    
 }

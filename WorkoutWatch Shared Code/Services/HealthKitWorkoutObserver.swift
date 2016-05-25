@@ -25,8 +25,8 @@ class HealthKitWorkoutObserver: NSObject {
     private var activeEnergyBurnedAnchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
     private let activeEnergyBurnedUnit = HKUnit.kilocalorieUnit()
     private var currentActiveEnergyBurnedQuantity = HKQuantity(unit: HKUnit.kilocalorieUnit(), doubleValue: 0.0)
-    private var activeEnergyBurnedSamples = [HKQuantitySample]()
-    var currentActiveEnergyBurned: Double = 0
+    private(set) var activeEnergyBurnedSamples = [HKQuantitySample]()
+    private(set) var currentActiveEnergyBurned: Double = 0
     
     init(delegate: HealthKitWorkoutObserverDelegate) {
         
