@@ -23,9 +23,12 @@ class WorkoutController: NSObject, HKWorkoutSessionDelegate {
     weak var delegate: WorkoutControllerDelegate?
     
     private var workoutTimer : NSTimer?
+    var workoutEndDate: NSDate?
+    
+    static let workoutStartedNotificationKey = "com.lunarlincoln.workoutwatch.workoutStartedNotificationKey"
     
     private let workoutObjectType = HKObjectType.workoutType()
-    private let workoutSession = HKWorkoutSession(activityType: HKWorkoutActivityType.Cycling, locationType: HKWorkoutSessionLocationType.Indoor)
+    let workoutSession = HKWorkoutSession(activityType: HKWorkoutActivityType.Cycling, locationType: HKWorkoutSessionLocationType.Indoor)
     
     var heartRateAnchor = HKQueryAnchor(fromValue: Int(HKAnchoredObjectQueryNoAnchor))
     private let heartRateUnit = HKUnit(fromString: "count/min")
@@ -55,6 +58,8 @@ class WorkoutController: NSObject, HKWorkoutSessionDelegate {
         
         workoutSession.delegate = self
         HealthKitManager.sharedInstance.healthStore.startWorkoutSession(workoutSession)
+        
+        workoutEndDate = NSDate(timeIntervalSinceNow: Double(workoutTemplate.durationInMinutes()*60))
     }
     
     private(set) lazy var heartRateUpdateHandler:(HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, NSError?) -> Void = {
@@ -152,9 +157,9 @@ class WorkoutController: NSObject, HKWorkoutSessionDelegate {
         
         switch toState {
         case .Running:
-            let workoutEndDate = workoutSession.startDate?.dateByAddingTimeInterval(Double(workoutTemplate.durationInMinutes()*3600))
             workoutTimer = NSTimer(fireDate: workoutEndDate!, interval: 0, target: self, selector: #selector(workoutTimerExpired), userInfo: nil, repeats: false)
             CFRunLoopAddTimer(CFRunLoopGetCurrent(), workoutTimer, kCFRunLoopCommonModes)
+            NSNotificationCenter.defaultCenter().postNotificationName(WorkoutController.workoutStartedNotificationKey, object: nil)
 //        case .Ended:
 //            hkWorkoutSessionEnded()
         default:

@@ -10,14 +10,16 @@ import UIKit
 
 public class WorkoutTemplate: NSObject {
     
-    public let name : String
+    public let name: String
     public let workoutSteps: [WorkoutStep]
+    public let fileName: String
     
     
-    init(name: String, workoutSteps: [WorkoutStep]) {
+    init(name: String, workoutSteps: [WorkoutStep], fileName: String) {
         
         self.name = name
         self.workoutSteps = workoutSteps
+        self.fileName = fileName
     }
     
     

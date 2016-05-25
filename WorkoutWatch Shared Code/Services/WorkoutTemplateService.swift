@@ -24,34 +24,54 @@ public class WorkoutTemplateService {
         
         for workoutTemplatePlistPath in workoutTemplatePlistPaths {
     
-            if let workoutTemplateDictionary = NSDictionary(contentsOfFile: workoutTemplatePlistPath) {
+            if let workoutTemplate = fetchWorkoutTemplateWithFilePath(workoutTemplatePlistPath) {
                 
-                var workoutSteps = [WorkoutStep]()
-                
-                if let workoutStepsFromPlist = workoutTemplateDictionary[workoutStepsKey] as? [NSDictionary] {
-                 
-                    for workoutStepFromPlist in workoutStepsFromPlist {
-                        
-                        if let minutes = workoutStepFromPlist[minutesKey] as? Int,
-                            maxHeartRatePercentage = workoutStepFromPlist[maxHeartRatePercentageKey] as? Int,
-                            minHeartRatePercentage = workoutStepFromPlist[minHeartRatePercentageKey] as? Int {
-                            
-                            let workoutStep = WorkoutStep(minutes: minutes, maxHeartRatePercentage: maxHeartRatePercentage, minHeartRatePercentage: minHeartRatePercentage)
-                            
-                            workoutSteps.append(workoutStep)
-                        }
-                    }
-                }
-                
-                if let name = workoutTemplateDictionary[workoutNameKey] as? String {
-                    
-                    let workoutTemplate = WorkoutTemplate(name: name, workoutSteps: workoutSteps)
-                    
-                    workoutTemplates.append(workoutTemplate)
-                }
+                workoutTemplates.append(workoutTemplate)
             }
         }
         
         return workoutTemplates
+    }
+    
+    public static func fetchWorkoutTemplateWithFileName(filename: String) -> WorkoutTemplate? {
+        
+        guard let workoutTemplatePlistPath = NSBundle.init(forClass: self).pathForResource(filename, ofType: "plist", inDirectory: "WorkoutTemplates") else {return nil}
+        
+        return fetchWorkoutTemplateWithFilePath(workoutTemplatePlistPath)
+    }
+    
+    public static func fetchWorkoutTemplateWithFilePath(workoutTemplatePlistPath: String) -> WorkoutTemplate? {
+        
+        if let workoutTemplateDictionary = NSDictionary(contentsOfFile: workoutTemplatePlistPath) {
+            
+            var workoutSteps = [WorkoutStep]()
+            
+            if let workoutStepsFromPlist = workoutTemplateDictionary[workoutStepsKey] as? [NSDictionary] {
+                
+                for workoutStepFromPlist in workoutStepsFromPlist {
+                    
+                    if let minutes = workoutStepFromPlist[minutesKey] as? Int,
+                        maxHeartRatePercentage = workoutStepFromPlist[maxHeartRatePercentageKey] as? Int,
+                        minHeartRatePercentage = workoutStepFromPlist[minHeartRatePercentageKey] as? Int {
+                        
+                        let workoutStep = WorkoutStep(minutes: minutes, maxHeartRatePercentage: maxHeartRatePercentage, minHeartRatePercentage: minHeartRatePercentage)
+                        
+                        workoutSteps.append(workoutStep)
+                    }
+                }
+            }
+            
+            if let name = workoutTemplateDictionary[workoutNameKey] as? String {
+                
+                let fileNameWithExtension = (workoutTemplatePlistPath as NSString).lastPathComponent
+                let fileName = (fileNameWithExtension as NSString).stringByDeletingPathExtension
+                
+                let workoutTemplate = WorkoutTemplate(name: name, workoutSteps: workoutSteps, fileName: fileName)
+                
+                return workoutTemplate
+            }
+        }
+        
+        return nil
     }
 }

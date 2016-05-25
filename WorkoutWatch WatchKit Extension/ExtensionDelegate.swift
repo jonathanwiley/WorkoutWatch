@@ -7,11 +7,18 @@
 //
 
 import WatchKit
+import WatchConnectivity
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
+        
+        if (WCSession.isSupported()) {
+            let session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+        }
     }
 
     func applicationDidBecomeActive() {
@@ -23,4 +30,23 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         // Use this method to pause ongoing tasks, disable timers, etc.
     }
 
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        
+        print("recieved message \(message)")
+        
+        if let command = message[WatchConnectivityConstants.commandKey] as! String? {
+            switch command {
+            case WatchConnectivityConstants.startWorkoutCommandString:
+                if let workoutTemplateFileName = message[WatchConnectivityConstants.workoutTemplateFileNameKey] as! String? {
+                    if let workoutTemplate = WorkoutTemplateService.fetchWorkoutTemplateWithFileName(workoutTemplateFileName) {
+                        WorkoutManager.sharedInstance.currentWorkoutController = WorkoutController(workoutTemplate: workoutTemplate)
+                        WorkoutManager.sharedInstance.currentWorkoutController?.startWorkout()
+                        replyHandler([WatchConnectivityConstants.workoutEndDateKey : (WorkoutManager.sharedInstance.currentWorkoutController?.workoutEndDate)!])
+                    }
+                }
+            default:
+                break
+            }
+        }
+    }
 }

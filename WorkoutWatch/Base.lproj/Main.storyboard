@@ -307,6 +307,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Remaining" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMv-22-qxu">
+                                <rect key="frame" x="239" y="410" width="123" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -316,7 +322,9 @@
                         <outlet property="activeCaloriesLabel" destination="PnS-uP-JBl" id="aXd-hb-cuV"/>
                         <outlet property="averageHeartRateLabel" destination="4GA-dK-KOv" id="TTf-4S-kRQ"/>
                         <outlet property="currentHeartRateLabel" destination="flr-Wy-Rqc" id="Ikb-kW-9QB"/>
+                        <outlet property="startStopWorkoutButton" destination="VlE-RT-A4F" id="WoK-Yx-GVD"/>
                         <outlet property="timeElapsedLabel" destination="XXS-nL-2cV" id="jf8-y1-82g"/>
+                        <outlet property="timeRemainingLabel" destination="dMv-22-qxu" id="KZ8-Xf-3Xk"/>
                         <outlet property="totalCaloriesLabel" destination="jRD-ba-0YG" id="ga9-CQ-N1a"/>
                     </connections>
                 </viewController>

@@ -27,6 +27,12 @@ class InterfaceController: WKInterfaceController, WorkoutManagerDelegate {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
+        if (WorkoutManager.sharedInstance.currentWorkoutController?.workoutSession.startDate != nil) {
+            workoutDidStart()
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(workoutDidStart), name: WorkoutController.workoutStartedNotificationKey, object: nil)
     }
 
     override func didDeactivate() {
@@ -45,7 +51,7 @@ class InterfaceController: WKInterfaceController, WorkoutManagerDelegate {
     
     func workoutDidStart() {
         dispatch_async(dispatch_get_main_queue()) {
-            self.timeRemainingTimer.setDate(WorkoutManager.sharedInstance.workoutEndDate!)
+            self.timeRemainingTimer.setDate(WorkoutManager.sharedInstance.currentWorkoutController!.workoutEndDate!)
             self.timeRemainingTimer.start()
             
             self.startStopButton.setTitle("Stop Workout")

@@ -21,6 +21,18 @@ protocol WorkoutManagerDelegate: class {
 public class WorkoutManager: NSObject, HKWorkoutSessionDelegate  {
     
     static let sharedInstance = WorkoutManager()
+    
+    var currentWorkoutController: WorkoutController?
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     weak var delegate: WorkoutManagerDelegate?
     
     private static let maxHeartRate = 187.0
