@@ -332,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				1E2448471CF2AD4300C3B0EF /* WorkoutTemplates */,
-				1E2448391CF2AD3B00C3B0EF /* HealthKitManager.swift */,
 				1E24483A1CF2AD3B00C3B0EF /* Model */,
 				1E24483D1CF2AD3B00C3B0EF /* Services */,
 			);
@@ -352,8 +351,9 @@
 			isa = PBXGroup;
 			children = (
 				1EB929DB1CF62C2100315BD8 /* WorkoutManager.swift */,
-				1E24483E1CF2AD3B00C3B0EF /* WorkoutTemplateService.swift */,
+				1E2448391CF2AD3B00C3B0EF /* HealthKitManager.swift */,
 				1EB929D21CF55B2C00315BD8 /* HealthKitWorkoutObserver.swift */,
+				1E24483E1CF2AD3B00C3B0EF /* WorkoutTemplateService.swift */,
 				1E24484C1CF51A7700C3B0EF /* WatchConnectivityManager.swift */,
 			);
 			path = Services;
