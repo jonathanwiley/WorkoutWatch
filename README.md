@@ -1,8 +1,6 @@
 # WorkoutWatch
 
-<div style="text-align:center">
-	<img src="https://raw.githubusercontent.com/microchip128/WorkoutWatch/master/WorkoutWatch/Assets.xcassets/AppIcon.appiconset/120%20-%20iPhone.png"/>	
-</div>
+![WorkoutWatch Logo](https://raw.githubusercontent.com/microchip128/WorkoutWatch/master/WorkoutWatch/Assets.xcassets/AppIcon.appiconset/120%20-%20iPhone.png)
 
 Example project that leverages HealthKit to nudge users into target heart rate zones in a variety of workouts.
 
@@ -14,10 +12,9 @@ The project includes a watchOS app that is capable of starting a HKWorkoutSessio
 ## Nashville CocoaHeads Presentation
 <div style="text-align:center">
 	<img src="http://img.youtube.com/vi/pJzI8xIpRxo/0.jpg" href="https://www.youtube.com/watch?v=pJzI8xIpRxo"/>
-	<p>
-		<a href="https://www.youtube.com/watch?v=pJzI8xIpRxo">Presentation Video</a>
-		</br>
-		<a href="http://www.lunarlincoln.com/wp-content/uploads/2016/06/CocoaHeads_HealthKit.pdf">Presentation Slides</a>
-	</p>
 </div>
+
+###[Presentation Video](https://www.youtube.com/watch?v=pJzI8xIpRxo)
+
+###[Presentation Slides](http://www.lunarlincoln.com/wp-content/uploads/2016/06/CocoaHeads_HealthKit.pdf)
  
