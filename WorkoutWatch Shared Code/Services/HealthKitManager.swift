@@ -31,7 +31,7 @@ public class HealthKitManager: NSObject {
         
         healthStore.requestAuthorizationToShareTypes(shareTypes, readTypes: readTypes) { (success, error) -> Void in
             if !success {
-                print("error when requesting authorization: \(error)")
+                print("Error when requesting authorization: \(error)")
             }
             completion(success, error)
         }
@@ -46,7 +46,7 @@ public class HealthKitManager: NSObject {
             let age = differenceComponents.year
             return age
         } catch {
-            // TODO: handle error
+            print("Error when request age from HealthKit")
         }
         
         return nil

@@ -22,7 +22,6 @@ public class WorkoutTemplate: NSObject {
         self.fileName = fileName
     }
     
-    
     func durationInMinutes() -> Int {
         
         var durationAccumulator = 0
@@ -34,5 +33,4 @@ public class WorkoutTemplate: NSObject {
         
         return durationAccumulator
     }
-    
 }
